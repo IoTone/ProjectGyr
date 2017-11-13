@@ -1,0 +1,20 @@
+#Thinkify Reader Configuration File
+#
+#Name
+reader_name = Thinkify RFID Reader
+description = John's office reader
+gps_location = 37.0625,-95.677068
+
+#notification target
+tcp_listener_address = 192.168.1.43
+tcp_listener_port = 4000
+
+#Time in sec before tags expire
+tag_lifetime = 5
+
+#Database stuff
+db_adapter = postgresql
+db_host = localhost
+db_username = postgres
+db_password = billgates
+db_database = project_development
