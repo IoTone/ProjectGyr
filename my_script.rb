@@ -1,9 +1,3 @@
-require 'mongo'
-
-#Creating a connection to database
-client = Mongo::Client.new(['127.0.0.1:27017'], :database => 'test')
-
-puts "#{client.cluster.servers.inspect}"
 
 
 #append the current directory to the search path
@@ -32,7 +26,7 @@ require 'thinkifyreader'
 # Show the inventory parameters
 	puts
 	puts "Inventory Parameters:"
-  puts r.inventory_params
+  puts "#{r.inventory_params}"
 
 
 # Turn the reader on (start reading tags using default parameters)
@@ -65,7 +59,7 @@ require 'thinkifyreader'
 
 	ensure
 
-		# Turn off reading.
+		#Turn off reading.
 		r.reading_active=false
 
 	end
