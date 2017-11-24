@@ -1,5 +1,3 @@
-
-
 #append the current directory to the search path
 $: << File.dirname(__FILE__)
 
@@ -8,6 +6,9 @@ $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 
 #require our library
 require 'thinkifyreader'
+require 'sinatra'
+require 'haml'
+
 
 # Create a reader to work with.
 # On windows you can just call .new and the class will scan for the first reader it can find (upto com20)
@@ -15,9 +16,17 @@ require 'thinkifyreader'
 
   #r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
 
-  r = ThinkifyReader.new #Windows
+   r = ThinkifyReader.new #Windows
 
-    r.reading_active=false
+   r.reading_active=false
+
+   get '/' do
+     @time = Time.now
+     @version = r.version
+     @reading = r.reading_active
+     r.raise_errors = false
+     erb :index
+   end
 
   puts "Query the reader's firmware version."
 	puts "Reader's Firmware Version: "
@@ -48,6 +57,7 @@ require 'thinkifyreader'
         puts "Count:  #{tag.count}"
         puts "Time of Discovery: #{tag.disc}"
         puts "Signal Strength: #{tag.rssi}"
+        puts "last time tag was read #{tag.last}"
 			end
 
 			# Clear its tag list.
