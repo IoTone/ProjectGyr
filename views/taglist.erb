@@ -1,0 +1,19 @@
+<h1>Taglist - <%= @tag_list.count %> Tags</h1>
+<table>
+  <tr>
+    <td>Number </td>
+    <td>EPC</td>
+    <td>Count</td>
+  </tr>
+  <% i=1 %>
+  <% @tag_list.each do |tag| %>
+    <tr>
+      <td><%= i %>.</td>
+      <td><%= tag.epc %></td>
+      <td><%= tag.count %></td>
+    </tr>
+    <% i = i+1  %>
+  <% end %>
+</table>
+<br/>
+<a href="/"> Home</a>
