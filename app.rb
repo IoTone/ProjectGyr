@@ -7,6 +7,7 @@ $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 #require our library
 require 'thinkifyreader'
 require 'sinatra'
+# require './tags.rb'
 
 # Create a reader to work with.
 # On windows you can just call .new and the class will scan for the first reader it can find (upto com20)
@@ -31,17 +32,18 @@ require 'sinatra'
 
     @tag_list = r.tag_list.filter(/.*/).sort
     r.tag_list.clear
-    erb :taglist 
+    erb :taglist
    end
 
-   get '/execute' do
-    erb :execute
+   get '/tags' do
+    @tag_list = r.tag_list
+    erb :tags
    end
 
-   post '/execute' do
+   post '/tags' do
     command = (params["reader_command"].downcase)
     @reader_response = r.execute(command).gsub("\r", "<br>")
-    erb :execute
+    erb :tags
    end
 
 # # Show the inventory parameters

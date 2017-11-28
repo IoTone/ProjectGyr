@@ -1,0 +1,16 @@
+<h1>Execute a Reader Command</h1>
+<form action="/tags" method="post">
+  <p>
+    <label>Command To Execute</label>
+    <input id="reader_command" name="reader_command" type="textbox"></input>
+  </p>
+  <p>
+    <input type="submit" value="Execute!"></input>
+  </p>
+  <legend>
+    <h2>Result</h2>
+    <% @tag_list.each do |tag| %>
+     <%=  "Tag:#{tag.epc}" %>
+     <% end %>
+  </legend>
+</form>
