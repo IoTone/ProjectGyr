@@ -7,8 +7,7 @@ $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 #require our library
 require 'thinkifyreader'
 require 'sinatra'
-# require './tags.rb'
-
+require './models/mongo_db'
 # Create a reader to work with.
 # On windows you can just call .new and the class will scan for the first reader it can find (upto com20)
 # Under linux, you must specify the /dev/ttyXX file descriptor to use:
@@ -36,7 +35,10 @@ require 'sinatra'
    end
 
    get '/tags' do
+    @reading_active = r.reading_active
     @tag_list = r.tag_list
+    @inventory_params = r.inventory_params
+    @count = r.tag_list.length
     erb :tags
    end
 
