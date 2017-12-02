@@ -1,1 +1,6 @@
-
+gem 'sinatra'
+gem 'activemodel-serializers-xml'
+gem 'active_model_serializers'
+gem 'mongo_mapper'
+gem 'serialport'
+gem 'bson_ext'

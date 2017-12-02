@@ -11,9 +11,10 @@
     <h2>Result</h2>
     <% @tag_list.each do |tag| %>
      <%=  "Tag:#{tag.epc}" %>
+     <br>
      <% end %>
      <p> <%= @inventory_params %></p>
      <p> <%= @count %></p>
-      <% print @reading_active.inspect %>
+      <%= @reading_active %>
   </legend>
 </form>
