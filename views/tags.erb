@@ -9,10 +9,16 @@
   </p>
   <legend>
     <h2>Result</h2>
-    <% @tag_list.each do |tag| %>
-     <%=  "Tag:#{tag.epc}" %>
+    <%  @newTags.each do |tag| %>
+
+     <%  #@tag_list.each do |tag| %>
+     <%= "EPC: #{tag['epc']}" %>
+     <%=  "RSSI:#{tag['rssi']}" %>
+     <%=  "DISCOVERY:#{tag['discovery']}" %>
+     <%=  "COUNT:#{tag['count']}" %>
      <br>
      <% end %>
+     <%= @all_tags.count %>
      <p> <%= @inventory_params %></p>
      <p> <%= @count %></p>
       <%= @reading_active %>

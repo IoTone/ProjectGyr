@@ -38,6 +38,8 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     erubi (1.7.0)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jsonapi-renderer (0.2.0)
@@ -53,6 +55,7 @@ GEM
       activesupport (>= 3.0)
       mongo (~> 1.8)
       plucky (~> 0.7.0)
+    multi_xml (0.6.0)
     mustermann (1.0.1)
     nokogiri (1.8.1-x64-mingw32)
       mini_portile2 (~> 2.3.0)
@@ -86,6 +89,7 @@ DEPENDENCIES
   active_model_serializers
   activemodel-serializers-xml
   bson_ext
+  httparty
   mongo_mapper
   serialport
   sinatra

@@ -6,8 +6,12 @@ $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 
 #require our library
 require 'thinkifyreader'
+require 'httparty'
 require 'sinatra'
 require './models/mongo_db'
+require 'net/http'
+require 'uri'
+require 'json'
 # Create a reader to work with.
 # On windows you can just call .new and the class will scan for the first reader it can find (upto com20)
 # Under linux, you must specify the /dev/ttyXX file descriptor to use:
@@ -18,7 +22,7 @@ require './models/mongo_db'
 
 # Set active reading to false
    r.reading_active=false
-   
+
 # Route for main page
    get '/' do
      @time = Time.now
@@ -41,17 +45,39 @@ require './models/mongo_db'
     @tag_list = r.tag_list
     @inventory_params = r.inventory_params
     @count = r.tag_list.length
+    @newTags = []
 
-    erb :tags
+    @all_tags = Tag.all
+    @tag_list.each do |tag|
+
+      @result = HTTParty.post("http://localhost:9292/tags",
+        :body => {
+          epc: tag.epc,
+          count: tag.count,
+          discovery: tag.disc,
+          rssi: tag.rssi,
+          last_tag_read: tag.last
+        }.to_json,
+        :headers => {'Content-Type' => 'application/json'}
+      )
+
+        @newTags << JSON.parse(@result.body)
+    		end
+
+        @tag_list.clear
+     erb :tags
    end
 
-   post '/tags' do
-    command = (params["reader_command"].downcase)
-    @reader_response = r.execute(command).gsub("\r", "<br>")
 
+    post '/tags' do
 
-    erb :tags
+      content_type :json
+      parse_params = JSON.parse(request.body.read)
+        @tag = Tag.new(parse_params)
+          @tag.save
+       {epc: @tag.epc, count: @tag.count, rssi: @tag.rssi, discovery: @tag.discovery, last_tag_read: @tag.last_tag_read}.to_json
    end
+
 
 # # Show the inventory parameters
 # 	puts
