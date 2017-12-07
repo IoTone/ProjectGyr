@@ -46,8 +46,8 @@ require 'json'
     @inventory_params = r.inventory_params
     @count = r.tag_list.length
     @newTags = []
-
     @all_tags = Tag.all
+
     @tag_list.each do |tag|
 
       @result = HTTParty.post("http://localhost:9292/tags",
@@ -74,7 +74,11 @@ require 'json'
       content_type :json
       parse_params = JSON.parse(request.body.read)
         @tag = Tag.new(parse_params)
+        unless Tag.all.any? {|x| x[:epc] == parse_params[:epc]}
           @tag.save
+        else
+          ## Something else
+        end
        {epc: @tag.epc, count: @tag.count, rssi: @tag.rssi, discovery: @tag.discovery, last_tag_read: @tag.last_tag_read}.to_json
    end
 
