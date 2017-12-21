@@ -1,15 +1,10 @@
   $('document').ready(function() {
 
-  $('.butt').on('click', function(e) {
     $.ajax({
       type: 'GET',
-      url: '/tags',
-      dataType: 'json'
+      url: '/taglist'
     }).done(function(data) {
       console.log(data);
+     
     })
-
-    e.preventDefault()
-    console.log('1234567890-');
-  });
-})
+});

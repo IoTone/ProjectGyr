@@ -53,9 +53,9 @@
         <p><%= @all_tags.count %></p>
          <% @all_tags.each do |tag| %>
          <p><%= "EPC: #{tag['epc']}" %></p>
-         <p><%= "time: #{tag['time_difference']}" %></p>
+         <p><%= "Last seen: #{tag['time_difference']} minutes ago" %></p>
+         <p><%= "Times read: #{tag['read']}" %></p>
           <% end %>
       <!-- </div> -->
-    </div>
   </body>
 </html>

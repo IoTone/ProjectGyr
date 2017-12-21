@@ -8,4 +8,5 @@ class Tag
   key :rssi, String
   key :last_tag_read, String
   key :time_difference, Integer
+  key :read, Integer
 end

@@ -30,20 +30,13 @@ require 'pry-byebug'
      @version = r.version
      @reading = r.reading_active
      r.raise_errors = false
-     erb :index
+     erb :dashboard
    end
 
    get '/taglist' do
-
+    content_type :json
     @all_tags = Tag.all
-
-    @all_tags.each do |tag|
-      @time = DateTime.parse(tag.discovery)
-      @correct = tag.discovery
-    end
-
-    r.tag_list.clear
-    erb :taglist
+    @all_tags.to_json
    end
 
    get '/tags' do
@@ -82,18 +75,21 @@ require 'pry-byebug'
 
         @tag = Tag.find_by_epc(parse_params['epc'])
         if @tag.nil?
+          read = 1
           time_difference = 0
           parse_params['time_difference'] = time_difference
+          parse_params['read'] = read
           @tag = Tag.new(parse_params)
           @tag.save
         else
+          @tag.read += 1
           current_discovery = DateTime.parse(parse_params['discovery'])
           previous_discovery = DateTime.parse(@tag.discovery)
 
           start_time = previous_discovery
           end_time = current_discovery
 
-          @tag.update_attribute(:time_difference, TimeDifference.between(start_time, end_time).in_minutes)
+          @tag.update_attributes(:time_difference => TimeDifference.between(start_time, end_time).in_minutes)
         end
-       {epc: @tag.epc, count: @tag.count, rssi: @tag.rssi, discovery: @tag.discovery, last_tag_read: @tag.last_tag_read, time_difference: @tag.time_difference}.to_json
+       {epc: @tag.epc, count: @tag.count, rssi: @tag.rssi, discovery: @tag.discovery, last_tag_read: @tag.last_tag_read, time_difference: @tag.time_difference, read: @tag.read}.to_json
    end
