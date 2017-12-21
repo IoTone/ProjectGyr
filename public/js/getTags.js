@@ -1,13 +1,15 @@
-$(function() {
+  $('document').ready(function() {
 
-  $.ajax({
-    type: "GET",
-    dataType: "json",
-    url: "/tags",
-    success: function(data) {
+  $('.butt').on('click', function(e) {
+    $.ajax({
+      type: 'GET',
+      url: '/tags',
+      dataType: 'json'
+    }).done(function(data) {
       console.log(data);
-    }
+    })
 
+    e.preventDefault()
+    console.log('1234567890-');
   });
-
-});
+})

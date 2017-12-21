@@ -33,8 +33,10 @@ GEM
     bson_ext (1.12.5)
       bson (~> 1.12.5)
     builder (3.2.3)
+    byebug (9.1.0)
     case_transform (0.2)
       activesupport
+    coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     erubi (1.7.0)
@@ -46,6 +48,7 @@ GEM
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    method_source (0.9.0)
     mini_portile2 (2.3.0)
     minitest (5.10.1)
     mongo (1.12.5)
@@ -61,6 +64,12 @@ GEM
       mini_portile2 (~> 2.3.0)
     plucky (0.7.0)
       mongo (~> 1.5)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.5.1)
+      byebug (~> 9.1)
+      pry (~> 0.10)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -79,6 +88,8 @@ GEM
       tilt (~> 2.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    time_difference (0.7.0)
+      activesupport (~> 5.1)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
 
@@ -91,8 +102,10 @@ DEPENDENCIES
   bson_ext
   httparty
   mongo_mapper
+  pry-byebug
   serialport
   sinatra
+  time_difference
 
 BUNDLED WITH
    1.16.0

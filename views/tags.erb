@@ -1,26 +1,61 @@
-<h1>Execute a Reader Command</h1>
-<form action="/tags" method="post">
-  <p>
-    <label>Command To Execute</label>
-    <input id="reader_command" name="reader_command" type="textbox"></input>
-  </p>
-  <p>
-    <input type="submit" value="Execute!"></input>
-  </p>
-  <legend>
-    <h2>Result</h2>
-    <%  @newTags.each do |tag| %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title> Project Gyruss </title>
 
-     <%  #@tag_list.each do |tag| %>
-     <%= "EPC: #{tag['epc']}" %>
-     <%=  "RSSI:#{tag['rssi']}" %>
-     <%=  "DISCOVERY:#{tag['discovery']}" %>
-     <%=  "COUNT:#{tag['count']}" %>
-     <br>
-     <% end %>
-     <%= @all_tags.count %>
-     <p> <%= @inventory_params %></p>
-     <p> <%= @count %></p>
-      <%= @reading_active %>
-  </legend>
-</form>
+      <link rel="stylesheet" href="css/custom.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="js/getTags.js"></script>
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+        <a class="navbar-brand">
+          <h1>Project Gyruss Dashboard</h1>
+        </a>
+      </div>
+     </div>
+    </nav>
+
+
+   <div class="container">
+    <button class="butt">Button</button>
+     <div class="row">
+        <h2>Tags</h2>
+      </div>
+        <%  @newTags.each do |tag| %>
+         <p><%= "EPC: #{tag['epc']}" %></p>
+         <br>
+         <p><%= "RSSI: #{tag['rssi']}" %></p>
+         <br>
+         <p><%= "DISCOVERY: #{tag['discovery']}" %></p>
+         <br>
+         <p><%= "COUNT: #{tag['count']}" %></p>
+         <br>
+         <p><%= "LAST: #{tag['last_tag_read']}" %></p><br>
+         <br>
+         <% end %>
+        </div>
+        <!-- <div class="row">
+          <div id="tagBoxes" class="col-md-6">
+
+          </div>
+          <div id="tagBoxes" class="col-md-6">
+
+          </div>
+        </div> -->
+        <!-- <div class="row"> -->
+        <p><%= @all_tags.count %></p>
+         <% @all_tags.each do |tag| %>
+         <p><%= "EPC: #{tag['epc']}" %></p>
+         <p><%= "time: #{tag['time_difference']}" %></p>
+          <% end %>
+      <!-- </div> -->
+    </div>
+  </body>
+</html>

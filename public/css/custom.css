@@ -2,3 +2,12 @@
   background-color: #222;
   color: #fff;
 }
+
+/* Tag Boxes */
+
+#tagBoxes {
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+}

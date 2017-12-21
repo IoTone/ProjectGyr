@@ -12,11 +12,12 @@ require './models/mongo_db'
 require 'net/http'
 require 'uri'
 require 'json'
+require 'pry-byebug'
 # Create a reader to work with.
 # On windows you can just call .new and the class will scan for the first reader it can find (upto com20)
 # Under linux, you must specify the /dev/ttyXX file descriptor to use:
 
-  #r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
+#r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
 
    r = ThinkifyReader.new #Windows
 
@@ -33,9 +34,14 @@ require 'json'
    end
 
    get '/taglist' do
-    @reading_active = r.reading_active=true
 
-    @tag_list = r.tag_list.filter(/.*/).sort
+    @all_tags = Tag.all
+
+    @all_tags.each do |tag|
+      @time = DateTime.parse(tag.discovery)
+      @correct = tag.discovery
+    end
+
     r.tag_list.clear
     erb :taglist
    end
@@ -49,7 +55,6 @@ require 'json'
     @all_tags = Tag.all
 
     @tag_list.each do |tag|
-
       @result = HTTParty.post("http://localhost:9292/tags",
         :body => {
           epc: tag.epc,
@@ -65,7 +70,8 @@ require 'json'
     		end
 
         @tag_list.clear
-     erb :tags
+
+      erb :tags
    end
 
 
@@ -73,54 +79,21 @@ require 'json'
 
       content_type :json
       parse_params = JSON.parse(request.body.read)
-        @tag = Tag.new(parse_params)
-        unless Tag.all.any? {|x| x[:epc] == parse_params[:epc]}
+
+        @tag = Tag.find_by_epc(parse_params['epc'])
+        if @tag.nil?
+          time_difference = 0
+          parse_params['time_difference'] = time_difference
+          @tag = Tag.new(parse_params)
           @tag.save
         else
-          ## Something else
+          current_discovery = DateTime.parse(parse_params['discovery'])
+          previous_discovery = DateTime.parse(@tag.discovery)
+
+          start_time = previous_discovery
+          end_time = current_discovery
+
+          @tag.update_attribute(:time_difference, TimeDifference.between(start_time, end_time).in_minutes)
         end
-       {epc: @tag.epc, count: @tag.count, rssi: @tag.rssi, discovery: @tag.discovery, last_tag_read: @tag.last_tag_read}.to_json
+       {epc: @tag.epc, count: @tag.count, rssi: @tag.rssi, discovery: @tag.discovery, last_tag_read: @tag.last_tag_read, time_difference: @tag.time_difference}.to_json
    end
-
-
-# # Show the inventory parameters
-# 	puts
-# 	puts "Inventory Parameters:"
-#   puts "#{r.inventory_params}"
-#
-#
-# # Turn the reader on (start reading tags using default parameters)
-#   puts
-#   puts "Reading Tags:"
-#   r.reading_active=true
-#
-# 	begin
-#
-# 			# Read for a few seconds...
-# 			sleep(3)
-#
-# 			# The reader will put the tags it finds into its tag_list... An array of tags.
-# 			puts "Total Tags: #{r.tag_list.length}"
-#
-# 			# Report what it found...
-# 			r.tag_list.each do |tag|
-				# puts "EPC: #{tag.epc}"
-        # puts "Count:  #{tag.count}"
-        # puts "Time of Discovery: #{tag.disc}"
-        # puts "Signal Strength: #{tag.rssi}"
-        # puts "last time tag was read #{tag.last}"
-# 			end
-#
-# 			# Clear its tag list.
-# 			r.tag_list.clear
-#
-# 	rescue Exception
-#
-# 	  puts "Exception Thrown."
-#
-# 	ensure
-#
-# 		#Turn off reading.
-# 		r.reading_active=false
-#
-# 	end
