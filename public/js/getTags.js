@@ -20,19 +20,28 @@
         var result = time_now.diff(last, 'minutes');
         console.log(result);
 
-        if (result < 5) {
+        if (result < 5 && read > 1) {
           var num = parseInt($('#time-5').text());
-          console.log(num);
           $('#time-5').text(num+1)
-        } else if (result > 5 && result < 30) {
+        } else if (result > 5 && result < 30 && read > 1) {
           var num = parseInt($('#time-30').text());
-          console.log(num);
           $('#time-30').text(num+1)
-          console.log('peepee')
-        } else if (result > 60) {
+        } else if (result > 60 && read > 1) {
           var num = parseInt($('#time-hour').text());
-          console.log(num);
           $('#time-hour').text(num+1)
+        } else {
+          console.log("up to date")
+        }
+
+        if (result < 5 && read === 1) {
+          var num = parseInt($('#2time-5').text());
+          $('#2time-5').text(num+1)
+        } else if (result > 5 && result < 30 && read == 1) {
+          var num = parseInt($('#2time-30').text());
+          $('#2time-30').text(num+1)
+        } else if (result > 60 && read == 1) {
+          var num = parseInt($('#2time-hour').text());
+          $('#2time-hour').text(num+1)
         } else {
           console.log("up to date")
         }
