@@ -82,14 +82,20 @@ require 'pry-byebug'
           @tag = Tag.new(parse_params)
           @tag.save
         else
+          #Increment times tag has been read
           @tag.read += 1
+
+          #Time difference calculation
           current_discovery = DateTime.parse(parse_params['discovery'])
           previous_discovery = DateTime.parse(@tag.discovery)
 
           start_time = previous_discovery
           end_time = current_discovery
 
-          @tag.update_attributes(:time_difference => TimeDifference.between(start_time, end_time).in_minutes)
+          #Update last time
+          last_tag_read = DateTime.parse(parse_params['last_tag_read']).strftime('%FT%T%:z')
+
+          @tag.update_attributes(:time_difference => TimeDifference.between(start_time, end_time).in_minutes, :last_tag_read => last_tag_read)
         end
        {epc: @tag.epc, count: @tag.count, rssi: @tag.rssi, discovery: @tag.discovery, last_tag_read: @tag.last_tag_read, time_difference: @tag.time_difference, read: @tag.read}.to_json
    end

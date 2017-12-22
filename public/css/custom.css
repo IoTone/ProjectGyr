@@ -19,7 +19,7 @@ div.timeBoxes {
 
 /* Repeat */
 
-#repeat_ui {
+#repeat_ui,#unique_ui {
   margin-top: 50px;
 }
 

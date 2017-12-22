@@ -32,15 +32,15 @@
          <div>
            <div class="timeBoxes">
              <h4 class="boxHeaders">Last 5 minutes</h4>
-             <p class="count">0</p>
+             <p id="time-5" class="count">0</p>
            </div>
            <div class="timeBoxes">
              <h4 class="boxHeaders">Last 30 minutes</h4>
-             <p class="count">0</p>
+             <p id="time-30" class="count">0</p>
            </div>
            <div class="timeBoxes">
              <h4 class="boxHeaders">Last hour stream</h4>
-             <p class="count">0</p>
+             <p id="time-hour" class="count">0</p>
            </div>
          </div>
       </div>
@@ -62,34 +62,51 @@
       </div>
     </div>
   </section>
-    <!-- <div class="row">
-  <div class="col-sm-9">
-    Level 1: .col-sm-9
-    <div class="row">
-      <div class="col-xs-8 col-sm-6">
-        Level 2: .col-xs-8 .col-sm-6
-      </div>
-      <div class="col-xs-4 col-sm-6">
-        Level 2: .col-xs-4 .col-sm-6
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-9">
-    Level 1: .col-sm-9
-    <div class="row">
-      <div class="col-xs-8 col-sm-6">
-        Level 2: .col-xs-8 .col-sm-6
-      </div>
-      <div class="col-xs-4 col-sm-6">
-        Level 2: .col-xs-4 .col-sm-6
-      </div>
-    </div>
-  </div>
-</div> -->
+
+  <section id="unique_ui">
+     <div class="row">
+      <h3>Unique Visits</h3>
+     </div>
+     <div class="row">
+
+     <div class="col">
+        <div>
+          <div class="timeBoxes">
+            <h4 class="boxHeaders">Last 5 minutes</h4>
+            <p class="count">0</p>
+          </div>
+          <div class="timeBoxes">
+            <h4 class="boxHeaders">Last 30 minutes</h4>
+            <p class="count">0</p>
+          </div>
+          <div class="timeBoxes">
+            <h4 class="boxHeaders">Last hour stream</h4>
+            <p class="count">0</p>
+          </div>
+        </div>
+     </div>
+     <div class="col">
+       <div>
+         <div class="timeBoxes">
+           <h4 class="boxHeaders">Errors in Last 5 minutes</h4>
+           <p class="count">0</p>
+         </div>
+         <div class="timeBoxes">
+           <h4 class="boxHeaders">Errors in Last 30 minutes</h4>
+           <p class="count">0</p>
+         </div>
+         <div class="timeBoxes">
+           <h4 class="boxHeaders">Errors in Last hour stream</h4>
+           <p class="count">0</p>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
 </div>
 
   <script src="js/getTags.js"></script>
+  <script src="js/moment.js"></script>
  </body>
 </html>
