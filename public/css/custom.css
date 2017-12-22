@@ -5,9 +5,24 @@
 
 /* Tag Boxes */
 
-#tagBoxes {
+div.timeBoxes {
   border: 1px solid black;
-  width: 200px;
   height: 200px;
   margin: 20px;
+  box-shadow: 0 0 2px;
+}
+
+.count {
+  font-size: 4em;
+  text-align: center;
+}
+
+/* Repeat */
+
+#repeat_ui {
+  margin-top: 50px;
+}
+
+h4.boxHeaders {
+  padding: 10px;
 }
