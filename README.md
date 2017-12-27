@@ -30,7 +30,13 @@ bundle install
 
 ### Run a server
 
-After getting the app onto your machine, in the directory run:
+Run a instance MongoDB server by navigating to your mongo directory and run:
+
+```
+./mongod.exe
+```
+
+After getting the app onto your machine and running mongo server, in the project directory run:
 
 ```
 rackup
