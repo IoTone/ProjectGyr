@@ -24,22 +24,16 @@ require 'pry-byebug'
 # Set active reading to false
    r.reading_active=false
 
-# Route for main page
-   get '/' do
-     @time = Time.now
-     @version = r.version
-     @reading = r.reading_active
-     r.raise_errors = false
-     erb :dashboard
-   end
-
+#API to grab tags
    get '/taglist' do
     content_type :json
     @all_tags = Tag.all
     @all_tags.to_json
    end
 
-   get '/tags' do
+# Route for main page
+
+   get '/' do
     @reading_active = r.reading_active=true
     @tag_list = r.tag_list
     @inventory_params = r.inventory_params
@@ -48,7 +42,7 @@ require 'pry-byebug'
     @all_tags = Tag.all
 
     @tag_list.each do |tag|
-      @result = HTTParty.post("http://localhost:9292/tags",
+      @result = HTTParty.post("http://localhost:9292/",
         :body => {
           epc: tag.epc,
           count: tag.count,
@@ -64,7 +58,7 @@ require 'pry-byebug'
 
         @tag_list.clear
 
-      erb :tags
+      erb :dashboard
    end
 
 

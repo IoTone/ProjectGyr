@@ -2,8 +2,17 @@
   background-color: #222;
   color: #fff;
 }
-
 /* Tag Boxes */
+
+div.tagBox {
+  border: 1px solid black;
+  margin: 20px;
+  box-shadow: 0 0 2px;
+  font-size: 1.3em;
+  padding: 20px;
+}
+
+/* Time Boxes */
 
 div.timeBoxes {
   border: 1px solid black;
@@ -19,7 +28,7 @@ div.timeBoxes {
 
 /* Repeat */
 
-#repeat_ui,#unique_ui {
+#repeat_ui,#unique_ui, #tag_row {
   margin-top: 50px;
 }
 

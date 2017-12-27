@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8"/>
@@ -7,9 +7,9 @@
       <link rel="stylesheet" href="css/custom.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-      <script src="js/getTags.js"></script>
+      <script src="js/getTags.js"></script> -->
       <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
-  </head>
+  <!-- </head>
 
   <body>
     <nav class="navbar navbar-default">
@@ -24,23 +24,23 @@
 
 
    <div class="container">
-    <button class="butt">Button</button>
      <div class="row">
         <h2>Tags</h2>
       </div>
+       <div class="row">
         <%  @newTags.each do |tag| %>
-         <p><%= "EPC: #{tag['epc']}" %></p>
+         <p><%= "EPC: #{tag['epc']}" %>
          <br>
-         <p><%= "RSSI: #{tag['rssi']}" %></p>
+         <%= "RSSI: #{tag['rssi']}" %>
          <br>
-         <p><%= "DISCOVERY: #{tag['discovery']}" %></p>
+         <%= "DISCOVERY: #{tag['discovery']}" %>
          <br>
-         <p><%= "COUNT: #{tag['count']}" %></p>
+         <%= "COUNT: #{tag['count']}" %>
          <br>
-         <p><%= "LAST: #{tag['last_tag_read']}" %></p><br>
-         <br>
+         <%= "LAST: #{tag['last_tag_read']}" %></p>
          <% end %>
         </div>
+       </div>
         <!-- <div class="row">
           <div id="tagBoxes" class="col-md-6">
 
@@ -49,13 +49,13 @@
 
           </div>
         </div> -->
-        <!-- <div class="row"> -->
+         <!-- <div class="row">
         <p><%= @all_tags.count %></p>
          <% @all_tags.each do |tag| %>
          <p><%= "EPC: #{tag['epc']}" %></p>
          <p><%= "Last seen: #{tag['time_difference']} minutes ago" %></p>
          <p><%= "Times read: #{tag['read']}" %></p>
           <% end %>
-      <!-- </div> -->
+     </div>
   </body>
-</html>
+</html> -->
