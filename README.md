@@ -42,10 +42,10 @@ After getting the app onto your machine and running mongo server, in the project
 rackup
 ```
 
-Then go to your browser and type in:
+Then go to your browser and type in (May very depending on what port that WEBRICK grabs):
 
 ```
-http://localhost:9292/ (depends on port that WEBRICK grabs)
+http://localhost:9292/ 
 ```
 
 
