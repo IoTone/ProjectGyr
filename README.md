@@ -30,7 +30,7 @@ bundle install
 
 ### Run a server
 
-Run a instance MongoDB server by navigating to your mongo directory and run:
+Run instance of MongoDB server by navigating to your mongo directory and run:
 
 ```
 ./mongod.exe
