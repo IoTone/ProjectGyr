@@ -7,8 +7,10 @@ MongoDB vs MongoMapper Gem
 Thinkify API for TR-265
 
 #How to use
-Run command "bundle update"
+1. Make sure TR-265 is connected with latest driver on computer (Windows 7)
 
-Then to start server use command "rackup"
+2. Run command "bundle update"
+
+3. Then to start server use command "rackup"
 
 
