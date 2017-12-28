@@ -10,7 +10,9 @@ Ruby 2.3.0
 
 Sinatra 2.0.0
 
-MongoDB Ruby Driver and MongoDB with MongoMapper
+MongoDB Ruby Driver 2.4 https://docs.mongodb.com/ruby-driver/master/
+
+MongoMapper 0.14.0 http://mongomapper.com/
 
 Thinkify API TR-265 Reader
 
@@ -18,17 +20,29 @@ Thinkify API TR-265 Reader
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Make sure refer to Thinkify TR-265 setup guide to install proper drivers
+Make sure refer to Thinkify TR-265 setup guide to install proper drivers 
+
+Also, to run bundler you must install its gem. You can do this by entering this in terminal:
+
+```
+gem install bundler
+```
+
+Refer to bundler article if needed:
+
+https://help.dreamhost.com/hc/en-us/articles/115001070131-Using-Bundler-to-install-Ruby-gems
 
 ### Installing
 
-To run the development environment just clone the repo and in the directory do these steps:
+To run the development environment, just clone the repo and in the directory do these steps:
 
 Run bundle
 
 ```
 bundle install
 ```
+
+Running this will get all the dependencies installed and ready for starting the application
 
 ### Run a server
 
@@ -44,11 +58,12 @@ After getting the app onto your machine and running mongo server, in the project
 rackup
 ```
 
-Then go to your browser and type in (May very depending on what port that WEBRICK grabs):
+Then go to your browser and type in (May very depending on what port WEBRICK grabs):
 
 ```
 http://localhost:9292/ 
 ```
+
 
 
 
