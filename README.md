@@ -12,11 +12,13 @@ Sinatra 2.0.0
 
 MongoDB Ruby Driver and MongoDB with MongoMapper
 
-Thinkify API TR-265
+Thinkify API TR-265 Reader
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+Make sure refer to Thinkify TR-265 setup guide to install proper drivers
 
 ### Installing
 
