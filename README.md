@@ -6,7 +6,7 @@ A simple Sinatra app that connects to Thinkify API for TR-265 to record and log 
 
 ## Technology
 
-Ruby 2.3.0
+Ruby 2.4.2
 
 Sinatra 2.0.0
 
