@@ -1,3 +1,5 @@
+source 'https://rubygems.org'
+
 gem 'sinatra'
 gem 'activemodel-serializers-xml'
 gem 'active_model_serializers'
