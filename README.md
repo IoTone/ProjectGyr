@@ -25,12 +25,22 @@ Make sure refer to Thinkify TR-265 setup guide to install proper drivers
 Also, to run bundler you must install its gem. You can do this by entering this in terminal:
 
 ```
-gem install bundler
+sudo gem install bundler
 ```
 
 Refer to bundler article if needed:
 
 https://help.dreamhost.com/hc/en-us/articles/115001070131-Using-Bundler-to-install-Ruby-gems
+
+
+Bundler wont run effectively on linux due to incompatibilites with Nokogiri. To resolve these issues, run this command to install proper configuration:
+
+```
+sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
+sudo gem install nokogiri
+```
+
+Refer to Nokogiri docs for more info: http://www.nokogiri.org/tutorials/installing_nokogiri.html
 
 ### Installing
 
