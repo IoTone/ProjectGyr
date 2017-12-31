@@ -6,7 +6,7 @@ A simple Sinatra app that connects to Thinkify API for TR-265 to record and log 
 
 ## Technology
 
-Ruby 2.4.2
+Ruby 2.4.2 (https://rvm.io/ RVM is recommended as a way to install on Linux)
 
 Sinatra 2.0.0
 
