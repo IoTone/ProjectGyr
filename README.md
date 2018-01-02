@@ -65,7 +65,7 @@ Run instance of MongoDB server by navigating to your mongo directory and run:
 After getting the app onto your machine and running mongo server, in the project directory run:
 
 ```
-rackup
+bundle exec rackup --host 0.0.0.0
 ```
 
 Then go to your browser and type in (May very depending on what port WEBRICK grabs):
