@@ -63,7 +63,7 @@ r = ThinkifyReader.new('/dev/ttyUSB0') #ArchLinux
    end
 
 
-    post '/tags' do
+    post '/' do
 
       content_type :json
       parse_params = JSON.parse(request.body.read)
