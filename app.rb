@@ -17,9 +17,10 @@ require 'pry-byebug'
 # On windows you can just call .new and the class will scan for the first reader it can find (upto com20)
 # Under linux, you must specify the /dev/ttyXX file descriptor to use:
 
-#r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
+r = ThinkifyReader.new('/dev/ttyUSB0') #ArchLinux
+# r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
 
-   r = ThinkifyReader.new #Windows
+# r = ThinkifyReader.new #Windows
 
 # Set active reading to false
    r.reading_active=false
