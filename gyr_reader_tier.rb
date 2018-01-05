@@ -2,9 +2,9 @@
 $: << File.dirname(__FILE__)
 
 #Add the default relative library location to the search path
-$: << File.join(File.dirname(__FILE__),"../","thinkify_api")
+$: << File.join(File.dirname(__FILE__),"","thinkify_api")
 
-# #require our libraries
+# require our library
 require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
@@ -140,8 +140,7 @@ class ReaderApp
 
   end
 
- end
-
+end
 #***********************************************************
 # Make an instance and Go!
 
