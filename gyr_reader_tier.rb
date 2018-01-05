@@ -37,6 +37,8 @@ class ReaderApp
         @tag.discovery = newtag.discovery
         @tag.rssi = newtag.rssi
         @tag.last_tag_read = newtag.last_tag_read
+        @tag.read = newtag.read
+        @tag.time_difference = newtag.time_difference
 
         @tag.save()
       else
