@@ -124,6 +124,7 @@ class ReaderApp
 
     while(1)
       run_cycle
+    end
 
     rescue Exception
 
