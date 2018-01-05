@@ -122,16 +122,8 @@ class ReaderApp
 
     begin
 
-        while(1)
-
-          run_cycle
-
-        end
-
-      else
-        run_cycle
-      end
-
+    while(1)
+      run_cycle
 
     rescue Exception
 
