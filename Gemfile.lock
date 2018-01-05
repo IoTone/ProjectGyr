@@ -63,6 +63,8 @@ GEM
     mustermann (1.0.1)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    nokogiri (1.8.1-x64-mingw32)
+      mini_portile2 (~> 2.3.0)
     plucky (0.7.0)
       mongo (~> 1.5)
     pry (0.11.3)
@@ -96,12 +98,14 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   active_model_serializers
   activemodel-serializers-xml
   bson_ext
   httparty
+  mongo
   mongo_mapper
   pry-byebug
   serialport

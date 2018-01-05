@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title> Project Gyruss </title>
-    <META HTTP-EQUIV="refresh" CONTENT="5">
+    <!-- <META HTTP-EQUIV="refresh" CONTENT="5"> -->
 
 
       <link rel="stylesheet" href="css/custom.css">
@@ -31,7 +31,7 @@
       <div class="row">
         <div class="tagBox">
           <p>Tags Read: <%= @all_tags.count %></p>
-           <% @all_tags.last(5).each do |tag| %>
+           <% @all_tags.each do |tag| %>
            <br />
            <%= "EPC: #{tag['epc']}" %>
            <br />

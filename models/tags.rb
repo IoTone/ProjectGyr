@@ -1,12 +1,10 @@
 class Tag
-  include MongoMapper::Document
-  self.partial_updates = true
+  include MongoModule
 
-  key :count, Integer
-  key :epc, String
-  key :discovery, String
-  key :rssi, String
-  key :last_tag_read, String
-  key :time_difference, Integer
-  key :read, Integer
+  attr_accessor :_id, :epc, :count, :rssi, :discovery, :last_tag_read, :time_difference, :read
+
+  def initialize
+    self.collection = 'tags'
+  end
+
 end

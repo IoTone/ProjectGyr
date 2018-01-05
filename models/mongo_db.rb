@@ -1,7 +1,10 @@
-require 'mongo_mapper'
+require 'mongo'
+require './models/mongoModule.rb'
 require './models/tags.rb'
 #Creating a connection to database
 
-MongoMapper.connection = Mongo::Connection.new('localhost')
+CONNECTION = Mongo::Connection.new('localhost')
 
-MongoMapper.database = "tagdata"
+DB = CONNECTION.db('tagdata')
+
+TAGS = DB['tags']
