@@ -12,7 +12,7 @@ require './newTag'
 class ReaderApp
 
   def persist
-    @tag_list = r.tag_list
+    @tag_list = @r.tag_list
 
     newtag = Newtag.new
 
