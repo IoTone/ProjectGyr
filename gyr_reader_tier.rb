@@ -4,15 +4,21 @@ $: << File.dirname(__FILE__)
 #Add the default relative library location to the search path
 $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 
-# require our library
+#require our library
 require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
+# require './testTag'
+require 'pry-byebug'
+require 'time_difference'
 
 class ReaderApp
 
   def persist
-    @tag_list = @r.tag_list
+     @tag_list = @r.tag_list
+    # @tag_list = []
+
+    # @tag_list << Testtag.new("4000 3708 3372 DDD9 0440 0000 0100", "24.95310179804325", 33, "2018/05/1 14:26:48.755", "2018-01-05T15:15:34+00:00")
 
     newtag = Newtag.new
 
@@ -24,30 +30,41 @@ class ReaderApp
           newtag.last_tag_read = t.last
         end
 
-      @tag = TAGS.find(newtag.epc)
-      if @tag.nil?
+      @tag = TAGS.find(epc: newtag.epc).to_a
+      if @tag.empty?
         read = 1
         time_difference = 0
         newtag.time_difference = time_difference
         newtag.read = read
-        @tag = Tag.new
 
-        @tag.epc = newtag.epc
-        @tag.count = newtag.count
-        @tag.discovery = newtag.discovery
-        @tag.rssi = newtag.rssi
-        @tag.last_tag_read = newtag.last_tag_read
-        @tag.read = newtag.read
-        @tag.time_difference = newtag.time_difference
+        tag = Tag.new
 
-        @tag.save()
+        tag.epc = newtag.epc
+        tag.count = newtag.count
+        tag.discovery = newtag.discovery
+        tag.rssi = newtag.rssi
+        tag.last_tag_read = newtag.last_tag_read
+        tag.read = newtag.read
+        tag.time_difference = newtag.time_difference
+
+        h = {}
+        tag.instance_variables.each {|var| h[var.to_s.delete("@")] = tag.instance_variable_get(var) }
+        h
+
+         TAGS.insert_one(h)
       else
         #Increment times tag has been read
-        @tag.read += 1
-
+        increment = {}
+        @tag.map { |h| increment = h }
+        increment['read'] += 1
+        number = increment['read']
         #Time difference calculation
         current_discovery = DateTime.parse(newtag.discovery)
-        previous_discovery = DateTime.parse(@tag.discovery)
+
+        time = {}
+        @tag.map { |t| time = t }
+
+        previous_discovery = DateTime.parse(time['discovery'])
 
         start_time = previous_discovery
         end_time = current_discovery
@@ -55,14 +72,16 @@ class ReaderApp
         #Update last time
         last_tag_read = DateTime.parse(newtag.last_tag_read).strftime('%FT%T%:z')
 
-        @tag.update_attributes(:time_difference => TimeDifference.between(start_time, end_time).in_minutes, :last_tag_read => last_tag_read)
+        calculation = TimeDifference.between(start_time, end_time).in_minutes
+
+        TAGS.update_one({epc: newtag.epc }, '$set' => { 'time_difference' => calculation, 'last_tag_read' => last_tag_read, 'read' => number })
       end
-      return @tag
+      # return @tag
   end
 
-  #****************************************************************************
-  #Create a reader grab our configuraiton and get ready to run
-  #****************************************************************************
+  # ****************************************************************************
+  # Create a reader grab our configuraiton and get ready to run
+  # ****************************************************************************
   def initialize
     # The PC this code is running on provides the networking / mac address we use
     #in the DB. Let's make a "reader" in the DB using these paramters.

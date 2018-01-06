@@ -40,7 +40,7 @@ require 'pry-byebug'
     # @inventory_params = r.inventory_params
     # @count = r.tag_list.length
     # @newTags = []
-    @all_tags = TAGS.find
+    @all_tags = TAGS.find.limit(5)
 
     # @tag_list.each do |tag|
     #   @result = HTTParty.post("http://localhost:9292/",
