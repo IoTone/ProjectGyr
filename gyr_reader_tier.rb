@@ -119,6 +119,8 @@ class ReaderApp
   #****************************************************************************
   def run_cycle
 
+    @r.reading_active=true
+
       # Read for a few seconds...
         sleep(3)
 
@@ -127,6 +129,7 @@ class ReaderApp
 
         if @tag_added
           #We've got at least one new tag on the list. -- Report the new Tags...
+           @r.tag_list
           @tag_added = false
           persist
         end
