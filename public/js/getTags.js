@@ -1,5 +1,5 @@
   $('document').ready(function() {
-
+      // (function worker() {
           $.ajax({
             type: 'GET',
             url: '/taglist',
@@ -11,7 +11,7 @@
               count = data[i].count // Count: Number of times reader picked up Tag during read
               rssi = data[i].rssi // RSSI: Relative recieved signal strength of Tag
               data[i].discovery // Discovery: Initial discovery of Tag
-              time_difference = data[i].time_difference 
+              time_difference = data[i].time_difference
               read = data[i].read
               last_tag_read = data[i].last_tag_read
 
@@ -49,5 +49,9 @@
 
         }
       },
+      // complete: function() {
+      //   setTimeout(worker, 5000)
+      // }
     });
+  // })();
   })
