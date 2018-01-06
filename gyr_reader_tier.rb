@@ -132,7 +132,7 @@ class ReaderApp
         end
 
         #Clean out Stale tags.
-        @r.tag_list.delete_stale_tags!()
+        @r.tag_list.clear
 
   end
 
