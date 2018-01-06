@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title> Project Gyruss </title>
-    <META HTTP-EQUIV="refresh" CONTENT="5">
+    <!-- <META HTTP-EQUIV="refresh" CONTENT="10"> -->
 
 
       <link rel="stylesheet" href="css/custom.css">
@@ -43,12 +43,15 @@
   </section>
 
    <section id="repeat_ui">
-      <div class="row">
+      <!-- <div class="row">
        <h3>Repeat Visits</h3>
-      </div>
+      </div> -->
       <div class="row">
 
       <div class="col">
+        <div class="row">
+         <h3>Repeat Visits</h3>
+        </div>
          <div>
            <div class="timeBoxes">
              <h4 class="boxHeaders">Last 5 minutes</h4>
@@ -65,25 +68,28 @@
          </div>
       </div>
       <div class="col">
-        <div>
-          <div class="timeBoxes">
-            <h4 class="boxHeaders">Errors in Last 5 minutes</h4>
-            <p class="count">0</p>
-          </div>
-          <div class="timeBoxes">
-            <h4 class="boxHeaders">Errors in Last 30 minutes</h4>
-            <p class="count">0</p>
-          </div>
-          <div class="timeBoxes">
-            <h4 class="boxHeaders">Errors in Last hour stream</h4>
-            <p class="count">0</p>
-          </div>
+        <div class="row">
+         <h3>Unique Visits</h3>
         </div>
+         <div>
+           <div class="timeBoxes">
+             <h4 class="boxHeaders">Last 5 minutes</h4>
+             <p id="2time-5" class="count">0</p>
+           </div>
+           <div class="timeBoxes">
+             <h4 class="boxHeaders">Last 30 minutes</h4>
+             <p id="2time-30"class="count">0</p>
+           </div>
+           <div class="timeBoxes">
+             <h4 class="boxHeaders">Last hour stream</h4>
+             <p id="2time-hour" class="count">0</p>
+           </div>
+         </div>
       </div>
     </div>
   </section>
 
-  <section id="unique_ui">
+  <!-- <section id="unique_ui">
      <div class="row">
       <h3>Unique Visits</h3>
      </div>
@@ -122,7 +128,7 @@
        </div>
      </div>
    </div>
- </section>
+ </section> -->
 
 </div>
 

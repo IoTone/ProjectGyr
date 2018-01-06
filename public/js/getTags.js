@@ -15,10 +15,12 @@
               read = data[i].read
               last_tag_read = data[i].last_tag_read
 
+              console.log(count)
+
               var time_now = moment();
               var last = moment.utc(last_tag_read).format('YYYY-MM-DDTHH:mm:ss')
               var result = time_now.diff(last, 'minutes');
-              console.log(result);
+              // console.log(result);
 
               if (result < 5 && read > 1) {
                 var num = parseInt($('#time-5').text());
