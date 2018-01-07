@@ -18,7 +18,7 @@ class ReaderApp
      @tag_list = @r.tag_list
     # @tag_list = []
 
-    # @tag_list << Testtag.new("4000 3708 3372 DDD9 0440 0000 0100", "24.95310179804325", 33, "2018/05/1 15:26:48.755", "2018-01-05T16:15:34+00:00")
+    # @tag_list << Testtag.new("9000 3708 F372 GDD9 0440 0400 0100", "40.95310179804325", 18, "2018/01/06 20:57:23.510", "2018/01/06 20:57:40.510")
 
     newtag = Newtag.new
 
@@ -71,6 +71,7 @@ class ReaderApp
         end_time = current_discovery
 
         #Update last time
+        last_tag_read = newtag.last_tag_read
         last_tag_read = DateTime.parse(newtag.last_tag_read).strftime('%FT%T%:z')
 
         calculation = TimeDifference.between(start_time, end_time).in_minutes
@@ -79,7 +80,7 @@ class ReaderApp
 
       else
         puts "Taglist empty"
-    end
+      end
       # return @tag
   end
 
