@@ -8,7 +8,7 @@ $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
-# require './testTag'
+require './testTag'
 require 'pry-byebug'
 require 'time_difference'
 
@@ -18,7 +18,7 @@ class ReaderApp
      @tag_list = @r.tag_list
     # @tag_list = []
 
-    # @tag_list << Testtag.new("7000 5708 F372 GDD9 0D40 0730 0120", "20.95310179804325", 36, "2018/01/06 23:34:23.510", "2018/01/06 23:35:40.510")
+    # @tag_list << Testtag.new("9000 3707 F872 GDD9 0440 04H0 0100", "20.95310179804325", 36, "2018/01/10 09:52:20.613", "2018/01/10 09:52:20.613")
 
     newtag = Newtag.new
 
@@ -61,22 +61,21 @@ class ReaderApp
         number = increment['read']
         #Time difference calculation
         current_discovery = DateTime.parse(newtag.discovery)
+        new_discovery = newtag.discovery
 
         time = {}
         @tag.map { |t| time = t }
 
         previous_discovery = DateTime.parse(time['discovery'])
 
-        start_time = previous_discovery
-        end_time = current_discovery
+        # start_time = previous_discovery
+        # end_time = current_discovery
 
         #Update last time
         last_tag_read = newtag.last_tag_read
         last_tag_read = DateTime.parse(newtag.last_tag_read).strftime('%FT%T%:z')
 
-        calculation = TimeDifference.between(start_time, end_time).in_minutes
-
-        TAGS.update_one({epc: newtag.epc }, '$set' => { 'time_difference' => calculation, 'last_tag_read' => last_tag_read, 'read' => number })
+        TAGS.update_one({epc: newtag.epc }, '$set' => { 'last_tag_read' => last_tag_read, 'read' => number, 'discovery' => new_discovery })
 
       else
         puts "Taglist empty"
