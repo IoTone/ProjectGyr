@@ -63,3 +63,7 @@ get '/taglist' do
 
     erb :dashboard
    end
+
+   post '/output' do
+     TAGS.delete_many({})
+   end

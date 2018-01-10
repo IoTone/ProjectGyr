@@ -8,7 +8,7 @@ div.tagBox {
   border: 1px solid black;
   margin: 20px;
   box-shadow: 0 0 2px;
-  font-size: 1.3em;
+  font-size: 1.2em;
   padding: 20px;
 }
 
@@ -23,6 +23,10 @@ div.timeBoxes {
 
 .count {
   font-size: 4em;
+  text-align: center;
+}
+
+.taginfobox {
   text-align: center;
 }
 

@@ -4,7 +4,6 @@
     <meta charset="utf-8"/>
     <title> Project Gyruss </title>
 
-
       <link rel="stylesheet" href="css/custom.css">
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <script src="js/jquery-3.2.1.min.js"></script>
@@ -23,25 +22,6 @@
     </nav>
 
   <div class="container">
-  <!-- <section id="tag_row">
-    <div class="row">
-      <h3>Tags Read</h3>
-    </div>
-     <div class="col">
-      <div class="row">
-        <div class="tagBox">
-          <p>Tags Read: <%= @all_tags.count %></p>
-           <% @all_tags.each do |tag| %>
-           <br />
-           <%= "EPC: #{tag['epc']}" %>
-           <br />
-           <%= "Times read: #{tag['read']}" %>
-           <br />
-           <% end %>
-         </div>
-       </div>
-      </div>
-  </section> -->
 
    <section id="repeat_ui">
       <!-- <div class="row">
@@ -99,7 +79,7 @@
        </div>
       <div class="row">
         <div class="tagBox">
-          <p>Tags Read: <%= @all_tags.count %></p>
+          <p class="taginfobox">Latest Tag Reads:</p>
            <% @all_tags.each do |tag| %>
            <br />
            <%= "EPC: #{tag['epc']}" %>
@@ -107,6 +87,8 @@
            <%= "Times read: #{tag['read']}" %>
            <br />
            <% end %>
+           <br />
+           <p>Tags Read: <%= @all_tags.count %></p>
          </div>
        </div>
      </div>
@@ -117,7 +99,7 @@
        </div>
       <div class="row">
         <div class="tagBox">
-          <button>Reset Database</button>
+          <button action="/output">Reset Database</button>
          </div>
        </div>
      </div>
