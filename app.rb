@@ -66,4 +66,5 @@ get '/taglist' do
 
    post '/output' do
      TAGS.delete_many({})
+     redirect '/'
    end
