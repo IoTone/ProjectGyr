@@ -4,11 +4,11 @@ $: << File.dirname(__FILE__)
 #Add the default relative library location to the search path
 $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 
-# #require our library
+#require our library
 require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
-require './testTag'
+#require './testTag'
 require 'pry-byebug'
 require 'time_difference'
 
