@@ -39,3 +39,31 @@ div.timeBoxes {
 h4.boxHeaders {
   padding: 10px;
 }
+
+/* Tabs */
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  display: inline-block;
+  cursor: pointer;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 30px;
+}
+
+.tab2,.tab3,.tab4 {
+  display: none;
+}
+
+ul li:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.active {
+  background-color: #fff;
+  color: #000;
+}

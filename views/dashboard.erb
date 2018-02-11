@@ -6,8 +6,7 @@
 
       <link rel="stylesheet" href="css/custom.css">
       <link rel="stylesheet" href="css/bootstrap.min.css">
-      <script src="js/jquery-3.2.1.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
+
   </head>
 
   <body>
@@ -21,95 +20,115 @@
      </div>
     </nav>
 
-  <div class="container">
+    <div class="container">
 
-   <section id="repeat_ui">
-      <!-- <div class="row">
-       <h3>Repeat Visits</h3>
-      </div> -->
+      <ul>
+        <li class="active" data-tab=".tab1">Analytics Dashboard</li>
+        <li data-tab=".tab2">Debug</li>
+        <li data-tab=".tab3">Settings</li>
+      </ul>
+
+    <div class="tabs">
+     <div class="tab tab1">
+       <h1>Analytics Dashboard</h1>
+     <section id="repeat_ui">
+
+      <div class="row">
+        <div class="col">
+          <div class="row">
+           <h3>Repeat Visits</h3>
+          </div>
+           <div>
+             <div class="timeBoxes">
+               <h4 class="boxHeaders">Last 5 minutes</h4>
+               <p id="time-5" class="count">0</p>
+             </div>
+             <div class="timeBoxes">
+               <h4 class="boxHeaders">Last 30 minutes</h4>
+               <p id="time-30" class="count">0</p>
+             </div>
+             <div class="timeBoxes">
+               <h4 class="boxHeaders">Last hour stream</h4>
+               <p id="time-hour" class="count">0</p>
+             </div>
+           </div>
+        </div>
+        <div class="col">
+          <div class="row">
+           <h3>Unique Visits</h3>
+          </div>
+           <div>
+             <div class="timeBoxes">
+               <h4 class="boxHeaders">Last 5 minutes</h4>
+               <p id="2time-5" class="count">0</p>
+             </div>
+             <div class="timeBoxes">
+               <h4 class="boxHeaders">Last 30 minutes</h4>
+               <p id="2time-30"class="count">0</p>
+             </div>
+             <div class="timeBoxes">
+               <h4 class="boxHeaders">Last hour stream</h4>
+               <p id="2time-hour" class="count">0</p>
+             </div>
+           </div>
+         </div>
+
+      </div>
+
+  </section>
+
+    <section id="tag_row">
       <div class="row">
 
-      <div class="col">
+       <div class="col">
+         <div class="row">
+           <h3>Tags Read</h3>
+         </div>
         <div class="row">
-         <h3>Repeat Visits</h3>
-        </div>
-         <div>
-           <div class="timeBoxes">
-             <h4 class="boxHeaders">Last 5 minutes</h4>
-             <p id="time-5" class="count">0</p>
-           </div>
-           <div class="timeBoxes">
-             <h4 class="boxHeaders">Last 30 minutes</h4>
-             <p id="time-30" class="count">0</p>
-           </div>
-           <div class="timeBoxes">
-             <h4 class="boxHeaders">Last hour stream</h4>
-             <p id="time-hour" class="count">0</p>
+          <div class="tagBox">
+            <p class="taginfobox">Latest Tag Reads:</p>
+             <% @all_tags.each do |tag| %>
+             <br />
+             <%= "EPC: #{tag['epc']}" %>
+             <br />
+             <%= "Times read: #{tag['read']}" %>
+             <br />
+             <% end %>
+             <br />
+             <p>Tags Read: <%= @all_tags.count %></p>
            </div>
          </div>
-      </div>
-      <div class="col">
+       </div>
+
+       <div class="col">
+         <div class="row">
+           <h3>Control Panel</h3>
+         </div>
         <div class="row">
-         <h3>Unique Visits</h3>
-        </div>
-         <div>
-           <div class="timeBoxes">
-             <h4 class="boxHeaders">Last 5 minutes</h4>
-             <p id="2time-5" class="count">0</p>
-           </div>
-           <div class="timeBoxes">
-             <h4 class="boxHeaders">Last 30 minutes</h4>
-             <p id="2time-30"class="count">0</p>
-           </div>
-           <div class="timeBoxes">
-             <h4 class="boxHeaders">Last hour stream</h4>
-             <p id="2time-hour" class="count">0</p>
+          <div class="tagBox">
+          <form action="/output" method="post">
+            <button type="submit">Reset Database</button>
+          </form>
            </div>
          </div>
-      </div>
+       </div>
+     </div>
+    </section>
     </div>
-  </section>
 
-  <section id="tag_row">
-    <div class="row">
+    <div class="tab tab2">
+      <h1>Debug</h1>
+    </div>
 
-     <div class="col">
-       <div class="row">
-         <h3>Tags Read</h3>
-       </div>
-      <div class="row">
-        <div class="tagBox">
-          <p class="taginfobox">Latest Tag Reads:</p>
-           <% @all_tags.each do |tag| %>
-           <br />
-           <%= "EPC: #{tag['epc']}" %>
-           <br />
-           <%= "Times read: #{tag['read']}" %>
-           <br />
-           <% end %>
-           <br />
-           <p>Tags Read: <%= @all_tags.count %></p>
-         </div>
-       </div>
-     </div>
+    <div class="tab tab3">
+      <h1>Settings</h1>
+    </div>
 
-     <div class="col">
-       <div class="row">
-         <h3>Control Panel</h3>
-       </div>
-      <div class="row">
-        <div class="tagBox">
-        <form action="/output" method="post">
-          <button type="submit">Reset Database</button>
-        </form>
-         </div>
-       </div>
-     </div>
    </div>
-  </section>
-
-</div>
-
+  </div>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="js/getTags.js"></script>
+  <script src="js/tabs.js"></script>
  </body>
 </html>
