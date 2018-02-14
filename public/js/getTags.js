@@ -7,7 +7,7 @@
            // Looping through RFID objects
             for( var i=0; i<data.length; i++ ) {
                 array = data[i]
-              console.log(array);
+              // console.log(array);
 
               u_interval_5 = data[i].u_interval_5
               u_interval_30 = data[i].u_interval_30

@@ -68,3 +68,11 @@ get '/taglist' do
      TAGS.delete_many({})
      redirect '/'
    end
+
+   get '/taglist_2' do
+     content_type :json
+
+     @all_tags = TAGS.find.to_a
+
+     @all_tags.to_json
+   end
