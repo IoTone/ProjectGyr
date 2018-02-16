@@ -17,7 +17,13 @@ $('document').ready(function() {
               read = data[i].read
               rssi = data[i].rssi
 
+          var tagdata = '<tr><th class="row_width" scope="row">' + epc + '</th>' +
+          '<td class="row_width2">' + last_tag_read + '</td>' +
+          '<td class="row_width3">' + rssi + '</td>' +
+          '<td class="row_width4">' + count + '</td>' +
+            '</tr>'
 
+          $('#table_body').prepend(tagdata)
       }
 //     },
 //     complete: function() {

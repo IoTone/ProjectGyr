@@ -79,3 +79,19 @@ ul li:hover {
   overflow-y:scroll;
   width:100%;
 }
+
+.row_width {
+  width: 30%;
+}
+
+.row_width2 {
+  width: 20%;
+}
+
+.row_width3 {
+  width: 15%;
+}
+
+.row_width4 {
+  width: 30%;
+}
