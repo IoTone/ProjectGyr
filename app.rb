@@ -62,11 +62,24 @@ get '/taglist' do
 
     @all_tags = TAGS.find.sort(_id: -1).limit(3)
 
-    if @r.reading_active = true
-      @reader_status = 'Connected'
+    if RUBY_PLATFORM.include?("linux")
+      @platform = "linux"
+      @com = "/dev/ttyACM0"
+    elsif RUBY_PLATFORM.include?("mingw32")
+      @platform = "mingw32"
+      @com = "Com"
+    elsif RUBY_PLATFORM.include?("mswin32")
+      @platform = 'mswin32'
+      @com = "com"
     else
-      @reader_status = 'Not Connected'
+      @platform = "Unkown"
     end
+
+    # if @r.reading_active = true
+      @reader_status = 'Connected'
+    # else
+      # @reader_status = 'Not Connected'
+    # end
 
     erb :dashboard
    end
