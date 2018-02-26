@@ -6,7 +6,7 @@ require 'uri'
 require 'json'
 require 'pry-byebug'
 require 'time_difference'
-require './gyr_reader_tier'
+# require './gyr_reader_tier'
 
 # API to grab tags
 get '/taglist' do
