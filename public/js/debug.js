@@ -7,7 +7,6 @@ $('document').ready(function() {
          // Looping through RFID objects
           for( var i=0; i<data.length; i++ ) {
               array = data[i]
-              console.log(array)
 
               count = data[i].count
               discovery = data[i].discovery
