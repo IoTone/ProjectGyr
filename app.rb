@@ -6,7 +6,7 @@ require 'uri'
 require 'json'
 require 'pry-byebug'
 require 'time_difference'
-require './gyr_reader_tier'
+# require './gyr_reader_tier'
 
 # API to grab tags
 get '/taglist' do
@@ -75,11 +75,11 @@ get '/taglist' do
       @platform = "Unkown"
     end
 
-    if @r.reading_active = true
-      @reader_status = 'Connected'
-    else
-      @reader_status = 'Not Connected'
-    end
+    # if @r.reading_active = true
+    #   @reader_status = 'Connected'
+    # else
+    #   @reader_status = 'Not Connected'
+    # end
 
     erb :dashboard
    end
