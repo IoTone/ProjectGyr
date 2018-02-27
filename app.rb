@@ -75,12 +75,6 @@ get '/taglist' do
       @platform = "Unkown"
     end
 
-    # if @r.reading_active = true
-    #   @reader_status = 'Connected'
-    # else
-    #   @reader_status = 'Not Connected'
-    # end
-
     erb :dashboard
    end
 

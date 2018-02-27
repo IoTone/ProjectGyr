@@ -1,5 +1,7 @@
 $('document').ready(function() {
 
+// https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+
         $.ajax({
           type: 'GET',
           url: '/taglist_2',
