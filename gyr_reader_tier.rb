@@ -17,26 +17,39 @@ class ReaderApp
   def persist
     @tag_list = @r.tag_list
     # @tag_list = []
+    #
+    # @tag_list << Testtag.new("G0SK J7X3 FZ7S GZL9 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/05 03:10:00.000", "2018/03/05 03:10:00.000")
 
-    # @tag_list << Testtag.new("G0SK J7X3 FZ7S GZL9 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/03 22:23:00.000", "2018/03/04 01:58:00.000")
-
+    counter = Read.new
 
     newtag = Newtag.new
 
     @tag_list.each do |t|
-          newtag.epc = t.epc
-          newtag.count = t.count
-          newtag.discovery = t.disc
-          newtag.rssi = t.rssi
-          newtag.last_tag_read = t.last
-        end
+
+      counter.discovery = t.disc
+
+      newtag.epc = t.epc
+      newtag.count = t.count
+      newtag.discovery = t.disc
+      newtag.rssi = t.rssi
+      newtag.last_tag_read = t.last
+     end
+
+     # Counter code
+
+     g = {}
+     counter.instance_variables.each {|var| g[var.to_s.delete("@")] = counter.instance_variable_get(var) }
+     g
+
+      READS.insert_one(g)
 
       @tag = TAGS.find(epc: newtag.epc).to_a
 
       if @tag.empty? && newtag.epc
         read = 1
-        time_difference = 0
-        newtag.time_difference = time_difference
+        time_difference_unique = 0
+
+        newtag.time_difference_unique = time_difference_unique
         newtag.read = read
 
         tag = Tag.new
@@ -47,7 +60,7 @@ class ReaderApp
         tag.rssi = newtag.rssi
         tag.last_tag_read = newtag.last_tag_read
         tag.read = newtag.read
-        tag.time_difference = newtag.time_difference
+        tag.time_difference_unique = newtag.time_difference_unique
 
         h = {}
         tag.instance_variables.each {|var| h[var.to_s.delete("@")] = tag.instance_variable_get(var) }
@@ -170,8 +183,8 @@ class ReaderApp
     end
 
   end
-
- end
+ 
+end
 #***********************************************************
 # Make an instance and Go!
 

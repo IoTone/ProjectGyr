@@ -15,7 +15,6 @@
               u_interval_8 = data[i].u_interval_8
               u_interval_24 = data[i].u_interval_24
 
-
               r_interval_5 = data[i].r_interval_5
               r_interval_30 = data[i].r_interval_30
               r_interval_60 = data[i].r_interval_60
@@ -23,25 +22,17 @@
               r_interval_24 = data[i].r_interval_24
 
 
-              // if (result < 5 && read > 1) {
-              //   var num = parseInt($('#time-5').text());
-                 $('#time-5').text(r_interval_5)
-              // } else if (result >= 5 && result < 30 && read > 1) {
-              //   var num = parseInt($('#time-30').text());
-                 $('#time-30').text(r_interval_30)
-              // } else if (result >= 30 && result < 60 && read > 1) {
-              //   var num = parseInt($('#time-hour').text());
-                 $('#time-hour').text(r_interval_60)
+             $('#time-5').text(r_interval_5)
 
-                 $('#time-8').text(r_interval_8)
+             $('#time-30').text(r_interval_30)
 
-                 $('#time-24').text(r_interval_24)
+             $('#time-hour').text(r_interval_60)
 
-              // } else {
-              // }
-              //
-              // if (result < 5 && read === 1) {
-              //   var num = parseInt($('#2time-5').text());
+             $('#time-8').text(r_interval_8)
+
+             $('#time-24').text(r_interval_24)
+
+
                  $('#2time-5').text(u_interval_5)
               // } else if (result >= 5 && result < 30 && read == 1) {
               //   var num = parseInt($('#2time-30').text());
