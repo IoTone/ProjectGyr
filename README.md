@@ -74,6 +74,13 @@ Then go to your browser and type in (May very depending on what port WEBRICK gra
 http://localhost:9292/ 
 ```
 
+Run a reader service in a different shell:
+
+```
+ruby gyr_reader_tier.rb
+```
+
+
 
 
 
