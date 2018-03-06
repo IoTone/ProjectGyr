@@ -198,4 +198,4 @@ end
 # Make an instance and Go!
 
 rn = ReaderApp.new()
-rn.persist
+rn.run

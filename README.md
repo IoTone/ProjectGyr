@@ -54,6 +54,13 @@ bundle install
 
 Running this will get all the dependencies installed and ready for starting the application
 
+## Configuration
+
+
+## Daemons
+
+TODO: Add info on setup of systemd units
+
 ### Run a server
 
 Run instance of MongoDB server by navigating to your mongo directory and run:
