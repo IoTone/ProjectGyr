@@ -8,9 +8,9 @@ $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
-require './testTag'
+# require './testTag'
 # require 'pry-byebug'
-require 'time_difference'
+# require 'time_difference'
 
 class ReaderApp
 
@@ -18,7 +18,7 @@ class ReaderApp
     @tag_list = @r.tag_list
     # @tag_list = []
     #
-    # @tag_list << Testtag.new("G0SK J7X3 FZ7S GZL9 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/05 03:10:00.000", "2018/03/05 03:10:00.000")
+    # @tag_list << Testtag.new("G0SK J7X3 FZ7S GZL9 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/07 19:01:00.000", "2018/03/07 19:01:00.000")
 
     counter = Read.new
 
@@ -35,13 +35,11 @@ class ReaderApp
       newtag.last_tag_read = t.last
      end
 
-     # Counter code
-
      g = {}
      counter.instance_variables.each {|var| g[var.to_s.delete("@")] = counter.instance_variable_get(var) }
      g
 
-      READS.insert_one(g)
+     READS.insert_one(g)
 
       @tag = TAGS.find(epc: newtag.epc).to_a
 
@@ -73,28 +71,12 @@ class ReaderApp
         @tag.map { |h| increment = h }
         increment['read'] += 1
         number = increment['read']
-        #Time difference calculation
-        current_discovery = DateTime.parse(newtag.discovery)
-        new_discovery = newtag.discovery
 
-        time = {}
-        @tag.map { |t| time = t }
-
-        previous_discovery = DateTime.parse(time['discovery'])
-
-        # start_time = previous_discovery
-        # end_time = current_discovery
-
-        #Update last time
-        # last_tag_read = newtag.last_tag_read
-        # last_tag_read = DateTime.parse(newtag.last_tag_read).strftime('%FT%T%:z')
-
-        TAGS.update_one({epc: newtag.epc }, '$set' => { 'read' => number, 'discovery' => new_discovery })
+        TAGS.update_one({epc: newtag.epc }, '$set' => { 'read' => number })
 
       else
         puts "Taglist empty"
       end
-      # return @tag
   end
 
   # ****************************************************************************
@@ -183,10 +165,10 @@ class ReaderApp
     end
 
   end
- 
+
 end
-#***********************************************************
-# Make an instance and Go!
+# #***********************************************************
+# # Make an instance and Go!
 
 rn = ReaderApp.new()
 rn.persist
