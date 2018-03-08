@@ -54,6 +54,13 @@ bundle install
 
 Running this will get all the dependencies installed and ready for starting the application
 
+## Configuration
+
+
+## Daemons
+
+TODO: Add info on setup of systemd units
+
 ### Run a server
 
 Run instance of MongoDB server by navigating to your mongo directory and run:
@@ -73,6 +80,13 @@ Then go to your browser and type in (May very depending on what port WEBRICK gra
 ```
 http://localhost:9292/ 
 ```
+
+Run a reader service in a different shell:
+
+```
+ruby gyr_reader_tier.rb
+```
+
 
 
 

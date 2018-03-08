@@ -92,12 +92,21 @@ class ReaderApp
     # Create a thinkify reader to work with.
     # On windows you can just call .new and the class will scan for the first reader
     # it can find (upto com20)
-    # @r = ThinkifyReader.new('/dev/ttyUSB0') #ArchLinux
-     @r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
-     # @r = ThinkifyReader.new
+    if RUBY_PLATFORM.include?("linux")
+      puts("Configure linux reader on  /dev/ttyUSB0")
+      @r = ThinkifyReader.new('/dev/ttyUSB0') #Linux Ubuntu
+      # @r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
+    end
 
+    if RUBY_PLATFORM.include?("mingw32")
+      puts("Configure windows reader")
+      @r = ThinkifyReader.new
+    end
 
-    # r = ThinkifyReader.new #Windows
+    if RUBY_PLATFORM.include?("mswin32")
+      puts("Configure windows reader")
+      @r = ThinkifyReader.new
+    end
 
     # Our API supports a callback mechanism. Simply tie a block to the .tag_added or
     # .tag_updated or .tag_removed to perform a set of tasks whenever these events
@@ -171,4 +180,4 @@ end
 # # Make an instance and Go!
 
 rn = ReaderApp.new()
-rn.persist
+rn.run
