@@ -8,7 +8,7 @@ $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
-# require './testTag'
+require './testTag'
 # require 'pry-byebug'
 # require 'time_difference'
 
@@ -18,7 +18,7 @@ class ReaderApp
     @tag_list = @r.tag_list
     # @tag_list = []
     #
-    # @tag_list << Testtag.new("G0SK J7X3 FZ7S GZL9 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/07 19:01:00.000", "2018/03/07 19:01:00.000")
+    # @tag_list << Testtag.new("G0SK J7X3 FZ7S GZL9 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/07 20:41:00.000", "2018/03/07 20:41:00.000")
 
     counter = Read.new
 
