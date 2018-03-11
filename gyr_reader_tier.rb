@@ -17,8 +17,8 @@ class ReaderApp
   def persist
     @tag_list = @r.tag_list
     # @tag_list = []
-    #
-    # @tag_list << Testtag.new("G0SK J7X3 FZ7S GZL9 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/07 20:41:00.000", "2018/03/07 20:41:00.000")
+
+    # @tag_list << Testtag.new("G0SK J7O3 FZ7S GZLD 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/07 20:41:00.000", "2018/03/07 20:41:00.000")
 
     counter = Read.new
 

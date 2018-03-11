@@ -24,12 +24,10 @@ $('document').ready(function() {
 
           $('#table_body').prepend(tagdata)
       }
-//     },
-//     complete: function() {
-//       setTimeout(worker, 5000);
-//     }
-//   });
-// })();
-  }
- })
-})
+     }
+   //    complete: function() {
+   //      setTimeout(worker, 5000);
+   //    }
+   //  });
+    })
+  })

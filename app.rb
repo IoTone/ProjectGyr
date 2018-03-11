@@ -48,7 +48,7 @@ get '/taglist' do
       time_difference_unique = TimeDifference.between(start_time_u, end_time_u).in_minutes
 
       @tag['time_difference_unique'] = time_difference_unique
-      
+
       @tag
     end
 
@@ -113,7 +113,11 @@ get '/taglist' do
 
 # Route for main page
 
-   get '/' do
+  get '/' do
+   erb :dashboard
+  end
+
+   get '/settings' do
 
     @all_tags = TAGS.find.sort(_id: -1).limit(3)
 
@@ -130,7 +134,7 @@ get '/taglist' do
       @platform = "Unkown"
     end
 
-    erb :dashboard
+    erb :settings
    end
 
    post '/output' do
@@ -145,4 +149,9 @@ get '/taglist' do
      @all_tags = TAGS.find.to_a
 
      @all_tags.to_json
+   end
+
+   get '/debug' do
+
+     erb :debug
    end

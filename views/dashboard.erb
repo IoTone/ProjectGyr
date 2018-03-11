@@ -23,15 +23,14 @@
     <div class="container">
 
       <ul class="tab_title">
-        <li class="active" data-tab=".tab1">Analytics Dashboard</li>
-        <li data-tab=".tab2">Debug</li>
-        <li data-tab=".tab3">Settings</li>
+        <a href="/" class="active"><li>Analytics Dashboard</li></a>
+        <a href="/debug"><li>Debug</li></a>
+        <a href="/settings"><li>Settings</li></a>
       </ul>
 
-    <div class="tabs">
-     <div class="tab tab1">
      <section id="repeat_ui">
 
+     <div class="tab tab1">
       <div class="row">
         <div class="col">
           <div class="row">
@@ -86,13 +85,11 @@
              </div>
            </div>
          </div>
-
-      </div>
-
+       </div>
+     </div>
     </section>
-    </div>
 
-    <div class="tab tab2">
+    <!-- <div class="tab tab2">
       <div class="tab-pane">
         <table class="table">
           <thead>
@@ -104,12 +101,12 @@
             </tr>
           </thead>
           <tbody id="table_body">
-            <!-- <tr>
+             <tr>
               <th class="row_width" scope="row"></th>
               <td class="row_width2"></td>
               <td class="row_width3"></td>
               <td class="row_width4"></td>
-            </tr> -->
+            </tr>
           </tbody>
         </table>
        </div>
@@ -152,7 +149,7 @@
      </div>
     </div>
 
-   </div>
+   </div> -->
   </div>
 
   <script src="js/jquery-3.2.1.min.js"></script>
@@ -160,6 +157,5 @@
   <script src="js/getTags.js"></script>
   <script src="js/debug.js"></script>
   <script src="js/tabs.js"></script>
-  <script src="js/csv.js"></script>
  </body>
 </html>

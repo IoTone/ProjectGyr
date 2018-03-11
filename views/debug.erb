@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title> Project Gyruss </title>
+
+      <link rel="stylesheet" href="css/custom.css">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+        <a class="navbar-brand">
+          <h1>Project Gyruss</h1>
+        </a>
+      </div>
+     </div>
+    </nav>
+
+    <div class="container">
+
+      <ul class="tab_title">
+        <a href="/"><li>Analytics Dashboard</li></a>
+        <a href="/debug"><li>Debug</li></a>
+        <a href="/settings"><li>Settings</li></a>
+      </ul>
+
+      <div class="tab-pane">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">EPC</th>
+              <th scope="col">Date</th>
+              <th scope="col">RSSI</th>
+              <th scope="col">Count</th>
+            </tr>
+          </thead>
+          <tbody id="table_body">
+            <!-- <tr>
+              <th class="row_width" scope="row"></th>
+              <td class="row_width2"></td>
+              <td class="row_width3"></td>
+              <td class="row_width4"></td>
+            </tr> -->
+          </tbody>
+        </table>
+       </div>
+   </div>
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="js/getTags.js"></script>
+  <script src="js/debug.js"></script>
+ </body>
+</html>
