@@ -9,12 +9,14 @@ require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
 require './testTag'
+require 'yaml'
 # require 'pry-byebug'
 # require 'time_difference'
 
 class ReaderApp
 
   def persist
+
     @tag_list = @r.tag_list
     # @tag_list = []
 
@@ -151,9 +153,15 @@ class ReaderApp
 
   def run
 
+    config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
+
     puts
     puts "Reading Tags:"
     @r.reading_active=true
+
+    if @r.reading_active == true
+      config['status_of_connection'] = "Connected"
+    end
 
     # puts "lifetime"
     # p @r.tag_list.tag_lifetime
@@ -178,12 +186,12 @@ class ReaderApp
 
   end
 
-end
-# #***********************************************************
-# # Make an instance and Go!
+ end
+ #***********************************************************
+ # Make an instance and Go!
 
 rn = ReaderApp.new()
 
 rn.run
 
-# rn.persist
+  # rn.persist

@@ -128,6 +128,8 @@ get '/taglist' do
 
     @reader_duty_cycle = config['reader_duty_cycle']
 
+    @reader_status = config['status_of_connection']
+
     if RUBY_PLATFORM.include?("linux")
       @platform = "linux"
       @com = "/dev/ttyACM0"
