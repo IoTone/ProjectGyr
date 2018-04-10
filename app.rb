@@ -6,6 +6,9 @@ require 'uri'
 require 'json'
 require 'pry-byebug'
 require 'time_difference'
+require 'yaml'
+
+config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
 # require './gyr_reader_tier'
 
 # API to grab tags
@@ -121,6 +124,10 @@ get '/taglist' do
 
     @all_tags = TAGS.find.sort(_id: -1).limit(3)
 
+    @linger_threshold = config['linger_threshold']
+
+    @reader_duty_cycle = config['reader_duty_cycle']
+
     if RUBY_PLATFORM.include?("linux")
       @platform = "linux"
       @com = "/dev/ttyACM0"
@@ -146,7 +153,7 @@ get '/taglist' do
    get '/taglist_2' do
      content_type :json
 
-     @all_tags = TAGS.find.to_a
+     @all_tags = READS.find.to_a
 
      @all_tags.to_json
    end

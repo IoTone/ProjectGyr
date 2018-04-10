@@ -1,0 +1,7 @@
+linger_threshold: 5
+
+reader_duty_cycle: 3
+
+reader_ID:
+
+serial_port: 

@@ -18,7 +18,7 @@ class ReaderApp
     @tag_list = @r.tag_list
     # @tag_list = []
 
-    # @tag_list << Testtag.new("G0SK J7O3 FZ7S GZLD 0Y4N JN8L A1W9", "50.95310179804325", 16, "2018/03/07 20:41:00.000", "2018/03/07 20:41:00.000")
+    # @tag_list << Testtag.new("RXLD Z9OL YT4S GSLX IFKU TR9W B1O7", "50.95310179804325", 16, "2018/04/09 21:50:00.000", "2018/04/09 21:50:00.000")
 
     counter = Read.new
 
@@ -27,6 +27,9 @@ class ReaderApp
     @tag_list.each do |t|
 
       counter.discovery = t.disc
+      counter.epc = t.epc
+      counter.rssi = t.rssi
+      counter.count = t.count
 
       newtag.epc = t.epc
       newtag.count = t.count
@@ -180,4 +183,7 @@ end
 # # Make an instance and Go!
 
 rn = ReaderApp.new()
+
 rn.run
+
+# rn.persist
