@@ -130,15 +130,16 @@ get '/taglist' do
 
     @reader_status = config['status_of_connection']
 
+    @serial_port = config['serial_port']
+
+    @reader_ID = config['reader_ID']
+
     if RUBY_PLATFORM.include?("linux")
       @platform = "linux"
-      @com = "/dev/ttyACM0"
     elsif RUBY_PLATFORM.include?("mingw32")
       @platform = "mingw32"
-      @com = "Com"
     elsif RUBY_PLATFORM.include?("mswin32")
       @platform = 'mswin32'
-      @com = "com"
     else
       @platform = "Unkown"
     end
