@@ -33,14 +33,15 @@ $('document').ready(function() {
             var str = '';
             for (var i=0; i < array.length; i++) {
               var line = '';
-              for (var index in array[i]) {
+              var new_id = array[i]["_id"]["$oid"];
+                           array[i]["_id"] = new_id;
 
+              for (var index in array[i]) {
                 if (line != '') line += ', '
 
                   line += [index] + ": ";
                   line += array[i][index];
               }
-
               str += line + '\r\n';
             }
 
