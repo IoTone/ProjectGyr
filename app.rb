@@ -14,7 +14,7 @@ config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
 # API to grab tags
 get '/taglist' do
     content_type :json
-    @reads = READS.find.to_a
+    @repeats = REPEATS.find.to_a
     @all_tags = TAGS.find.to_a
 
     u_interval_5 = 0
@@ -31,7 +31,8 @@ get '/taglist' do
 
     @interval_array = []
 
-   @counter = @reads.map do |r|
+   @counter = @repeats.map do |r|
+
      @read = r
 
      end_time_r = DateTime.now.strftime("%Y/%m/%d %H:%M:%S.%L")
@@ -149,7 +150,7 @@ get '/taglist' do
 
    post '/output' do
      TAGS.delete_many({})
-     READS.delete_many({})
+     REPEATS.delete_many({})
      redirect '/'
    end
 

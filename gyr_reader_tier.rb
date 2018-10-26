@@ -10,20 +10,21 @@ require './models/mongo_db'
 require './newTag'
 require './testTag'
 require 'yaml'
-# require 'pry-byebug'
-# require 'time_difference'
+require 'pry-byebug'
+require 'time_difference'
 
 class ReaderApp
+  @@config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
 
   def persist
 
-    @tag_list = @r.tag_list
-    # @tag_list = []
+    # @tag_list = @r.tag_list
+    @tag_list = []
 
-    # @tag_list << Testtag.new("RXLD Z9OL YT4S GSLX IFKU TR9W B1O7", "50.95310179804325", 16, "2018/04/09 21:50:00.000", "2018/04/09 21:50:00.000")
+    @tag_list << Testtag.new("PX5D Z9O4 YD4I A8LO IFKU SRHW B1N7", "50.95310179804325", 16, "2018/10/25 23:50:00.000", "2018/10/25 23:50:00.000")
 
     counter = Read.new
-
+    repeat = Repeat.new
     newtag = Newtag.new
 
     @tag_list.each do |t|
@@ -32,6 +33,11 @@ class ReaderApp
       counter.epc = t.epc
       counter.rssi = t.rssi
       counter.count = t.count
+
+      repeat.discovery = t.disc
+      repeat.epc = t.epc
+      repeat.rssi = t.rssi
+      repeat.count = t.count
 
       newtag.epc = t.epc
       newtag.count = t.count
@@ -47,6 +53,8 @@ class ReaderApp
      READS.insert_one(g)
 
       @tag = TAGS.find(epc: newtag.epc).to_a
+
+      linger_threshold = @@config["linger_threshold"]
 
       if @tag.empty? && newtag.epc
         read = 1
@@ -71,11 +79,25 @@ class ReaderApp
 
          TAGS.insert_one(h)
       elsif @tag && newtag.epc
+
         #Increment times tag has been read
         increment = {}
         @tag.map { |h| increment = h }
         increment['read'] += 1
         number = increment['read']
+
+        end_time = DateTime.now.strftime("%Y/%m/%d %H:%M:%S.%L")
+        start_time = @tag[0]['last_tag_read']
+
+        time_difference = TimeDifference.between(start_time, end_time).in_minutes
+
+        if @tag[0]['read'] > 1 && time_difference > linger_threshold
+          j = {}
+          repeat.instance_variables.each {|var| j[var.to_s.delete("@")] = repeat.instance_variable_get(var) }
+          j
+
+          REPEATS.insert_one(j)
+        end
 
         TAGS.update_one({epc: newtag.epc }, '$set' => { 'read' => number })
 
@@ -87,111 +109,111 @@ class ReaderApp
   # ****************************************************************************
   # Create a reader grab our configuraiton and get ready to run
   # ****************************************************************************
-  def initialize
-    # The PC this code is running on provides the networking / mac address we use
-    #in the DB. Let's make a "reader" in the DB using these paramters.
+  # def initialize
+  #   # The PC this code is running on provides the networking / mac address we use
+  #   #in the DB. Let's make a "reader" in the DB using these paramters.
+  #
+  #   #We can specify parameters in a config file for easier deployment.
+  #   @tag_added = false
+  #
+  #   # Create a thinkify reader to work with.
+  #   # On windows you can just call .new and the class will scan for the first reader
+  #   # it can find (upto com20)
+  #   if RUBY_PLATFORM.include?("linux")
+  #     puts("Configure linux reader on  /dev/ttyUSB0")
+  #     @r = ThinkifyReader.new('/dev/ttyUSB0') #Linux Ubuntu
+  #     # @r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
+  #   end
+  #
+  #   if RUBY_PLATFORM.include?("mingw32")
+  #     puts("Configure windows reader")
+  #     @r = ThinkifyReader.new
+  #   end
+  #
+  #   if RUBY_PLATFORM.include?("mswin32")
+  #     puts("Configure windows reader")
+  #     @r = ThinkifyReader.new
+  #   end
+  #
+  #   # Our API supports a callback mechanism. Simply tie a block to the .tag_added or
+  #   # .tag_updated or .tag_removed to perform a set of tasks whenever these events
+  #   # occur.
+  #   #puts "setting up tag added callback"
+  #   # When we first observe a tag, add it to the db if it doesn't exist and then add
+  #   # an 'added' event.
+  #   @r.tag_list.tag_added do |tag|
+  #     puts "A new tag was seen!  #{tag.epc}"
+  #     @tag_added = true #We just set a flag...
+  #   end
+  #
+  # end
+  #
+  # # ****************************************************************************
+  # # Do one cycle to do notification.
+  # #****************************************************************************
+  # def run_cycle
+  #
+  #   @r.reading_active=true
+  #
+  #     # Read for a few seconds...
+  #       sleep(config['reader_duty_cycle'])
+  #
+  #       # The reader will put the tags it finds into its tag_list... An array of tags.
+  #       puts "Total Tags: #{@r.tag_list.length}"
+  #
+  #       if @tag_added
+  #         #We've got at least one new tag on the list. -- Report the new Tags...
+  #          @r.tag_list
+  #         @tag_added = false
+  #         persist
+  #       end
+  #
+  #       #Clean out Stale tags.
+  #       @r.tag_list.clear
+  #
+  # end
+  #
+  # def run
+  #
+  #   config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
+  #
+  #   puts
+  #   puts "Reading Tags:"
+  #   @r.reading_active=true
+  #
+  #   if @r.reading_active == true
+  #     config['status_of_connection'] = "Connected"
+  #   end
+  #
+  #   # puts "lifetime"
+  #   # p @r.tag_list.tag_lifetime
+  #
+  #   begin
+  #
+  #   while(1)
+  #     run_cycle
+  #   end
+  #
+  #   rescue Exception
+  #
+  #     puts "Exception Thrown."
+  #     p $!
+  #
+  #   ensure
+  #
+  #     # Turn off reading.
+  #     @r.reading_active=false
+  #
+  #   end
+  #
+  # end
 
-    #We can specify parameters in a config file for easier deployment.
-    @tag_added = false
-
-    # Create a thinkify reader to work with.
-    # On windows you can just call .new and the class will scan for the first reader
-    # it can find (upto com20)
-    if RUBY_PLATFORM.include?("linux")
-      puts("Configure linux reader on  /dev/ttyUSB0")
-      @r = ThinkifyReader.new('/dev/ttyUSB0') #Linux Ubuntu
-      # @r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
-    end
-
-    if RUBY_PLATFORM.include?("mingw32")
-      puts("Configure windows reader")
-      @r = ThinkifyReader.new
-    end
-
-    if RUBY_PLATFORM.include?("mswin32")
-      puts("Configure windows reader")
-      @r = ThinkifyReader.new
-    end
-
-    # Our API supports a callback mechanism. Simply tie a block to the .tag_added or
-    # .tag_updated or .tag_removed to perform a set of tasks whenever these events
-    # occur.
-    #puts "setting up tag added callback"
-    # When we first observe a tag, add it to the db if it doesn't exist and then add
-    # an 'added' event.
-    @r.tag_list.tag_added do |tag|
-      puts "A new tag was seen!  #{tag.epc}"
-      @tag_added = true #We just set a flag...
-    end
-
-  end
-
-  # ****************************************************************************
-  # Do one cycle to do notification.
-  #****************************************************************************
-  def run_cycle
-
-    @r.reading_active=true
-
-      # Read for a few seconds...
-        sleep(3)
-
-        # The reader will put the tags it finds into its tag_list... An array of tags.
-        puts "Total Tags: #{@r.tag_list.length}"
-
-        if @tag_added
-          #We've got at least one new tag on the list. -- Report the new Tags...
-           @r.tag_list
-          @tag_added = false
-          persist
-        end
-
-        #Clean out Stale tags.
-        @r.tag_list.clear
-
-  end
-
-  def run
-
-    config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
-
-    puts
-    puts "Reading Tags:"
-    @r.reading_active=true
-
-    if @r.reading_active == true
-      config['status_of_connection'] = "Connected"
-    end
-
-    # puts "lifetime"
-    # p @r.tag_list.tag_lifetime
-
-    begin
-
-    while(1)
-      run_cycle
-    end
-
-    rescue Exception
-
-      puts "Exception Thrown."
-      p $!
-
-    ensure
-
-      # Turn off reading.
-      @r.reading_active=false
-
-    end
-
-  end
-
- end
+end
  #***********************************************************
  # Make an instance and Go!
 
 rn = ReaderApp.new()
 
-rn.run
+# rn.run
 
-  # rn.persist
+  rn.persist
