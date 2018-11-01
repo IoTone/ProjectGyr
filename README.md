@@ -1,10 +1,10 @@
 # Overview
 
-# Project Gyruss v.1
+# Project Gyruss v0.1
 
 A simple Sinatra app that connects to Thinkify API for TR-265 to record and log visits of RFID stickers
 
-## Technology
+## Dependencies
 
 Ruby 2.4.2 (https://rvm.io/ RVM is recommended as a way to install on Linux)
 
@@ -14,7 +14,16 @@ MongoDB Ruby Driver 2.4 https://docs.mongodb.com/ruby-driver/master/
 
 MongoMapper 0.14.0 http://mongomapper.com/
 
-Thinkify API TR-265 Reader
+Thinkify API https://drive.google.com/open?id=1JM289l5eTAna-oBwAmP4c0go3IegeyzL
+
+## Hardware
+
+- Thinkify TR-265 Reader https://thinkifyit.com/collections/rfid-readers/products/tr-265-usb-desktop-rfid-reader
+- Thinkify Circularly Polarized Antenna https://thinkifyit.com/collections/antennas/products/tac-060-ip67-circularly-polarized-antenna
+
+## Tags
+
+Any standard RFID tag should work.
 
 ## Getting Started
 
@@ -59,7 +68,7 @@ Running this will get all the dependencies installed and ready for starting the 
 Any changes needed to configuration should go into gyruss_values.yml.
 
 - linger_threshold: 5 (number of seconds)
-- reader_duty_cycle: 3
+- reader_duty_cycle: 3 (number of seconds to poll to red tags)
 - reader_ID: Reader 129JDFALK
 - serial_port: COM 12
 - status_of_connection: Not Connected

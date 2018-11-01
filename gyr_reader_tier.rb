@@ -106,9 +106,9 @@ class ReaderApp
       end
   end
 
-  ****************************************************************************
-  Create a reader grab our configuraiton and get ready to run
-  ****************************************************************************
+  # ****************************************************************************
+  # Create a reader grab our configuraiton and get ready to run
+  # ****************************************************************************
   def initialize
     # The PC this code is running on provides the networking / mac address we use
     #in the DB. Let's make a "reader" in the DB using these paramters.
@@ -180,7 +180,7 @@ class ReaderApp
     @r.reading_active=true
   
     if @r.reading_active == true
-      config['status_of_connection'] = "Connected"
+      @@config['status_of_connection'] = "Connected"
     end
   
     # puts "lifetime"
