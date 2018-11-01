@@ -56,6 +56,13 @@ Running this will get all the dependencies installed and ready for starting the 
 
 ## Configuration
 
+Any changes needed to configuration should go into gyruss_values.yml.
+
+- linger_threshold: 5 (number of seconds)
+- reader_duty_cycle: 3
+- reader_ID: Reader 129JDFALK
+- serial_port: COM 12
+- status_of_connection: Not Connected
 
 ## Daemons
 
