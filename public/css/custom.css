@@ -77,7 +77,6 @@ ul li:hover {
 
 .tab-pane{
   height:300px;
-  overflow-y:scroll;
   width:100%;
 }
 
