@@ -29,7 +29,15 @@ Any standard RFID tag should work.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Make sure refer to Thinkify TR-265 setup guide to install proper drivers 
+Make sure to refer to Thinkify TR-265 setup guide to install proper drivers
+
+Go to this link: https://drive.google.com/open?id=1JM289l5eTAna-oBwAmP4c0go3IegeyzL and download the Thinkify Developers Kit 2.2 Zip file
+
+(If that link is broken, just go to https://thinkify.com/pages/downloads instead)
+
+From there, go to the Documents folder and follow the TR-265 Driver Guide to install thinkify's reader driver
+
+Once you have that installed, go to the Software API's folder, click the Ruby folder, and place the thinkify_api folder at the root directory of Project
 
 Also, to run bundler you must install its gem. You can do this by entering this in terminal:
 
@@ -94,7 +102,7 @@ bundle exec rackup --host 0.0.0.0
 Then go to your browser and type in (May very depending on what port WEBRICK grabs):
 
 ```
-http://localhost:9292/ 
+http://localhost:9292/
 ```
 
 Run a reader service in a different shell:
@@ -102,8 +110,3 @@ Run a reader service in a different shell:
 ```
 ruby gyr_reader_tier.rb
 ```
-
-
-
-
-
