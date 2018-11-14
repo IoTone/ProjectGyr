@@ -1,8 +1,10 @@
 # Overview
 
-# Project Gyruss v0.1
+Project Gyr v0.9 provides an easy way to use RFID to detect presense and track users in an area.  The intent is to offer a realtime dashboard for anyone needing to track movement, checkins, walk ins, visits, etc., in a particular area around an RFID proximity reader.  
 
-A simple Sinatra app that connects to Thinkify API for TR-265 to record and log visits of RFID stickers
+A simple Sinatra app that connects to Thinkify API for TR-265 to record and log visits of RFID stickers.  The reader part of the application spends cycles reading for new RFID tags, and then updating the backend system with updates such that any web based clients can see a realtime set of status updates in a dashboard.  In addition to a dashboard, the app provides a debugger and data export.
+
+Why the name Gyr, because we love that 80's video game, Gyruss.
 
 ## Dependencies
 
@@ -110,3 +112,17 @@ Run a reader service in a different shell:
 ```
 ruby gyr_reader_tier.rb
 ```
+
+## RFID and Your Research
+
+This is a very interesting area to research, the area of localization (in terms of indoor positioning), user tracking, and analysis of movement of people or objects (packages).  If you have some research you'd like to do as a collaboration, please contact us at IoTone.  We have a number of specialists in this area through prior work of the founder with PARC, and there might be some overlap in areas of focus.  Feel free to use this code and improve upon it.
+
+## RFID and Your Business
+
+If you have need for equipment, tags, and business expertise around NFC and RFID, please contact our partner, http://tagstand.com.  We've worked with them for years, and they can help out small and medium sized business with solutions.
+
+If you have specific development needs, please contact us.
+
+## Contributions
+
+We welcome pull requests, new issues, and will attempt to maintain this to meet the needs of the user community.
