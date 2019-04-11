@@ -9,7 +9,6 @@ require 'time_difference'
 require 'yaml'
 
 config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
-# require './gyr_reader_tier'
 
 # API to grab tags
 get '/taglist' do
@@ -165,4 +164,9 @@ get '/taglist' do
    get '/debug' do
 
      erb :debug
+   end
+
+   get '/trakr' do
+    
+     erb :trakr
    end
