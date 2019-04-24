@@ -153,6 +153,10 @@ get '/taglist' do
      redirect '/'
    end
 
+   post '/linger' do
+     params.to_s
+   end
+
    get '/taglist_2' do
      content_type :json
 
@@ -167,6 +171,6 @@ get '/taglist' do
    end
 
    get '/trakr' do
-    
+
      erb :trakr
    end

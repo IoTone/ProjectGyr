@@ -41,12 +41,27 @@
         </div>
 
         <div class="row">
-         <h4>Linger Threshold: <%= @linger_threshold %></h4>
+          <form action="/linger" method="post">
+            <div class="form-group">
+              <label for="linger"><h4>Linger Threshold: <%= @linger_threshold %></h4></label>
+              <input name="linger" type="linger" class="form-control" id="lingerThreshold">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
 
+
         <div class="row">
-         <h4>Reader Duty Cycle: <%= @reader_duty_cycle %></h4>
+         <form action="/duty" method="post">
+           <div class="form-group">
+             <label for="duty"><h4>Reader Duty Cycle: <%= @reader_duty_cycle %></h4></label>
+             <input type="duty" class="form-control" id="readerDutyCyle">
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
         </div>
+
+
        </div>
 
        <div class="col">

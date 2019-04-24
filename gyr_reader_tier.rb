@@ -14,7 +14,6 @@ require 'pry-byebug'
 require 'time_difference'
 
 class ReaderApp
-  attr_accessor :status
 
   @@config = YAML::load_file(File.join(__dir__, "gyruss_values.yml"))
 
@@ -175,13 +174,6 @@ class ReaderApp
 
   end
 
-  def status(status)
-    @status = status
-    puts @status
-  end
-
-  puts @status
-
   def run
 
     puts
@@ -192,8 +184,6 @@ class ReaderApp
     # p @r.tag_list.tag_lifetime
 
     if @r.connected == true
-      connected = "Connected"
-      status(connected)
       puts "Reader connected"
     end
 
@@ -224,4 +214,5 @@ end
  rn = ReaderApp.new()
 
  rn.run
+ 
   # rn.persist
