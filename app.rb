@@ -154,7 +154,19 @@ get '/taglist' do
    end
 
    post '/linger' do
-     params.to_s
+     linger = params['linger_threshold']
+     linger_threshold = linger.to_i
+     config['linger_threshold'] = linger_threshold
+     File.open("./gyruss_values.yml", 'w') { |f| YAML.dump(config, f) }
+     redirect '/settings'
+   end
+
+   post '/duty' do
+     duty = params['duty']
+     reader_duty_cycle = duty.to_i
+     config['reader_duty_cycle'] = reader_duty_cycle
+     File.open("./gyruss_values.yml", 'w') { |f| YAML.dump(config, f) }
+     redirect '/settings'
    end
 
    get '/taglist_2' do

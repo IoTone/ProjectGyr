@@ -29,9 +29,9 @@
         <a href="/trakr"><li>PresenceTrackr</li></a>
       </ul>
 
-     <div class="row">
+     <div style="padding: 50px" class="row">
       <div class="col">
-        <div class="row">
+        <div style="padding-bottom: 10px" class="row">
           <h4>Reader Details</h4>
         </div>
         <div>
@@ -40,22 +40,22 @@
          <p>OS path: <%= @platform %> <%= @serial_port %></p>
         </div>
 
-        <div class="row">
+        <div style="padding: 30px" class="row">
           <form action="/linger" method="post">
             <div class="form-group">
-              <label for="linger"><h4>Linger Threshold: <%= @linger_threshold %></h4></label>
-              <input name="linger" type="linger" class="form-control" id="lingerThreshold">
+              <label for="linger_threshold"><h4>Linger Threshold: <%= @linger_threshold %></h4></label>
+              <input name="linger_threshold" type="number" class="form-control" id="lingerThreshold">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
 
 
-        <div class="row">
+        <div style="padding: 30px" class="row">
          <form action="/duty" method="post">
            <div class="form-group">
              <label for="duty"><h4>Reader Duty Cycle: <%= @reader_duty_cycle %></h4></label>
-             <input type="duty" class="form-control" id="readerDutyCyle">
+             <input name="duty" type="number" class="form-control" id="readerDutyCyle">
            </div>
            <button type="submit" class="btn btn-primary">Submit</button>
          </form>
@@ -65,14 +65,14 @@
        </div>
 
        <div class="col">
-        <div class="row">
+        <div style="padding-bottom: 10px" class="row">
           <h4>Control Panel</h4>
         </div>
         <div class="row">
         <div>
-          <button id="csv">Export to CSV</button>
+          <button style="margin:20px" class="btn btn-primary" id="csv">Export to CSV</button>
          <form action="/output" method="post">
-          <button type="submit">Reset Counter</button>
+          <button style="margin:20px" class="btn btn-primary" type="submit">Reset Counter</button>
          </form>
         </div>
        </div>
