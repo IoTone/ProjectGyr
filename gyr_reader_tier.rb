@@ -10,7 +10,7 @@ require './models/mongo_db'
 require './newTag'
 require './testTag'
 require 'yaml'
-require 'pry-byebug'
+# require 'pry-byebug'
 require 'time_difference'
 
 class ReaderApp
@@ -143,7 +143,7 @@ class ReaderApp
     # When we first observe a tag, add it to the db if it doesn't exist and then add
     # an 'added' event.
     @r.tag_list.tag_added do |tag|
-      puts "A new tag was seen!  #{tag.epc}"
+      # puts "A new tag was seen!  #{tag.epc}"
       @tag_added = true #We just set a flag...
     end
 
@@ -160,7 +160,7 @@ class ReaderApp
         sleep(@@config['reader_duty_cycle'])
 
         # The reader will put the tags it finds into its tag_list... An array of tags.
-        puts "Total Tags: #{@r.tag_list.length}"
+        # puts "Total Tags: #{@r.tag_list.length}"
 
         if @tag_added
           #We've got at least one new tag on the list. -- Report the new Tags...
@@ -176,15 +176,15 @@ class ReaderApp
 
   def run
 
-    puts
-    puts "Reading Tags:"
+    # puts
+    # puts "Reading Tags:"
     @r.reading_active=true
 
     # puts "lifetime"
     # p @r.tag_list.tag_lifetime
 
     if @r.connected == true
-      puts "Reader connected"
+      # puts "Reader connected"
     end
 
     begin
@@ -214,5 +214,5 @@ end
  rn = ReaderApp.new()
 
  rn.run
- 
+
   # rn.persist

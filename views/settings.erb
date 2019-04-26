@@ -32,15 +32,15 @@
      <div style="padding: 50px" class="row">
       <div class="col">
         <div style="padding-bottom: 10px" class="row">
-          <h4>Reader Details</h4>
+          <h2>Reader Details</h2>
         </div>
         <div>
-         <p>Reader ID: <%= @reader_ID %> </p>
-         <p>Status of Connection: <%= @reader_status %></p>
-         <p>OS path: <%= @platform %> <%= @serial_port %></p>
+         <p><strong>Reader ID:</strong> <%= @reader_ID %> </p>
+         <p><strong>Status of Connection:</strong> <%= @reader_status %></p>
+         <p><strong>OS path:</strong> <%= @platform %> <%= @serial_port %></p>
         </div>
 
-        <div style="padding: 30px" class="row">
+        <!-- <div style="padding: 30px" class="row">
           <form action="/linger" method="post">
             <div class="form-group">
               <label for="linger_threshold"><h4>Linger Threshold: <%= @linger_threshold %></h4></label>
@@ -48,10 +48,10 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-        </div>
+        </div> -->
 
 
-        <div style="padding: 30px" class="row">
+        <!-- <div style="padding: 30px" class="row">
          <form action="/duty" method="post">
            <div class="form-group">
              <label for="duty"><h4>Reader Duty Cycle: <%= @reader_duty_cycle %></h4></label>
@@ -59,23 +59,46 @@
            </div>
            <button type="submit" class="btn btn-primary">Submit</button>
          </form>
-        </div>
+        </div> -->
 
 
        </div>
 
        <div class="col">
         <div style="padding-bottom: 10px" class="row">
-          <h4>Control Panel</h4>
+          <h2>Control Panel</h2>
         </div>
         <div class="row">
         <div>
           <button style="margin:20px" class="btn btn-primary" id="csv">Export to CSV</button>
-         <form action="/output" method="post">
+         <form style="display:inline" action="/output" method="post">
           <button style="margin:20px" class="btn btn-primary" type="submit">Reset Counter</button>
          </form>
         </div>
        </div>
+
+       <div class="row">
+         <div style="padding: 30px" class="row">
+          <form action="/duty" method="post">
+            <div class="form-group">
+              <label for="duty"><h4>Reader Duty Cycle: <%= @reader_duty_cycle %></h4></label>
+              <input name="duty" type="number" class="form-control" id="readerDutyCyle">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+         </div>
+
+         <div style="padding: 30px" class="row">
+           <form action="/linger" method="post">
+             <div class="form-group">
+               <label for="linger_threshold"><h4>Linger Threshold: <%= @linger_threshold %></h4></label>
+               <input name="linger_threshold" type="number" class="form-control" id="lingerThreshold">
+             </div>
+             <button type="submit" class="btn btn-primary">Submit</button>
+           </form>
+         </div>
+        </div>
+
       </div>
      </div>
 

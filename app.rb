@@ -78,7 +78,7 @@ get '/taglist' do
    elsif tag['time_difference_unique'] > 480 && tag['time_difference_unique'] < 1440
       u_interval_24 += 1
    else
-     puts "Uniques udpated"
+     # puts "Uniques udpated"
   end
     @interval_array << { u_interval_5: u_interval_5 , u_interval_30: u_interval_30, u_interval_60: u_interval_60, u_interval_8: u_interval_8, u_interval_24: u_interval_24 }
   end
@@ -106,7 +106,7 @@ get '/taglist' do
     elsif count['time_difference_repeat'] > 480 && count['time_difference_repeat'] < 1440
        r_interval_24 += 1
     else
-        puts "Repeats updated"
+        # puts "Repeats updated"
     end
     @interval_array << { r_interval_5: r_interval_5, r_interval_30: r_interval_30, r_interval_60: r_interval_60, r_interval_8: r_interval_8, r_interval_24: r_interval_24 }
   end
