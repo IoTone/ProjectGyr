@@ -17,4 +17,4 @@ READS = client[:reads]
 REPEATS = client[:repeats]
 READERS = client[:readers]
 
-puts TAGS.inspect
+# puts TAGS.inspect

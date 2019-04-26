@@ -103,7 +103,7 @@ class ReaderApp
         TAGS.update_one({epc: newtag.epc }, '$set' => { 'read' => number })
 
       else
-        puts "Taglist empty"
+        # puts "Taglist empty"
       end
   end
 
