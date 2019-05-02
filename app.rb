@@ -1,4 +1,3 @@
-require 'httparty'
 require 'sinatra'
 require './models/mongo_db'
 require 'net/http'
@@ -124,11 +123,15 @@ get '/taglist' do
 
     @all_tags = TAGS.find.sort(_id: -1).limit(3)
 
+    @reader_info = READERS.find.to_a
+
+    @reader_status = @reader_info[0]['status']
+
     @linger_threshold = config['linger_threshold']
 
     @reader_duty_cycle = config['reader_duty_cycle']
 
-    @reader_status = config['status_of_connection']
+    # @reader_status = "Not Connected"
 
     @serial_port = config['serial_port']
 

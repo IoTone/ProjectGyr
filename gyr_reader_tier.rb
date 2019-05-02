@@ -10,7 +10,7 @@ require './models/mongo_db'
 require './newTag'
 require './testTag'
 require 'yaml'
-# require 'pry-byebug'
+require 'pry-byebug'
 require 'time_difference'
 
 class ReaderApp
@@ -46,6 +46,7 @@ class ReaderApp
       newtag.rssi = t.rssi
       newtag.last_tag_read = t.last
      end
+
 
      g = {}
      counter.instance_variables.each {|var| g[var.to_s.delete("@")] = counter.instance_variable_get(var) }
@@ -105,6 +106,7 @@ class ReaderApp
       else
         # puts "Taglist empty"
       end
+
   end
 
   # ****************************************************************************
@@ -184,7 +186,21 @@ class ReaderApp
     # p @r.tag_list.tag_lifetime
 
     if @r.connected == true
-      # puts "Reader connected"
+
+      status = "Connected"
+      reader_id = 1
+
+      @reader_status = READERS.find(reader: reader_id).to_a
+
+      s = {'status' => status, "reader" => reader_id }
+
+      if @reader_status.empty?
+        READERS.insert_one(s)
+      else
+        READERS.update_one({reader: reader_id }, '$set' => { 'status' => status })
+      end
+
+      # @@status = "Connected"
     end
 
     begin
@@ -193,11 +209,18 @@ class ReaderApp
       run_cycle
     end
 
+    rescue Interrupt
+      reader_id = 1
+
+      READERS.update_one({reader: reader_id }, '$set' => { 'status' => 'Not Connected' })
     rescue Exception
+      reader_id = 1
+
+      READERS.update_one({reader: reader_id }, '$set' => { 'status' => 'Not Connected' })
 
       puts "Exception Thrown."
-      p $!
 
+      p $!
     ensure
 
       # Turn off reading.
