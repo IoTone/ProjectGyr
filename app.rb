@@ -1,3 +1,11 @@
+#append the current directory to the search path
+$: << File.dirname(__FILE__)
+
+#Add the default relative library location to the search path
+$: << File.join(File.dirname(__FILE__),"","thinkify_api")
+
+# #require our library
+require 'thinkifyreader'
 require 'sinatra'
 require './models/mongo_db'
 require 'net/http'
@@ -131,8 +139,6 @@ get '/taglist' do
 
     @reader_duty_cycle = config['reader_duty_cycle']
 
-    # @reader_status = "Not Connected"
-
     @serial_port = config['serial_port']
 
     @reader_ID = config['reader_ID']
@@ -185,7 +191,20 @@ get '/taglist' do
      erb :debug
    end
 
+   get '/trakr_list' do
+     content_type :json
+
+     people = YAML::load_file(File.join(__dir__, "people.yml"))
+
+     @people = people 
+
+      @people.to_json
+   end
+
    get '/trakr' do
+     people = YAML::load_file(File.join(__dir__, "people.yml"))
+
+     @people = people
 
      erb :trakr
    end

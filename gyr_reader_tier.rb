@@ -20,6 +20,7 @@ class ReaderApp
   def persist
 
     @tag_list = @r.tag_list
+    people = []
     # @tag_list = []
     #
     # @tag_list << Testtag.new("PX2D Z9O4 YD4I N9LO JFKU SUHW B2N7", "50.95310179804325", 16, "2018/11/06 11:20:00.000", "2018/11/06 11:20:00.000")
@@ -45,8 +46,16 @@ class ReaderApp
       newtag.discovery = t.disc
       newtag.rssi = t.rssi
       newtag.last_tag_read = t.last
+      people.push(t)
      end
 
+     # File.open("people.yml","w") { |file| file.write(people.to_yaml)}
+     @@people = YAML::load_file(File.join(__dir__, "people.yml"))
+
+
+     File.open('people.yml', 'w') do |file|
+       file.write(Psych.dump(people))
+     end
 
      g = {}
      counter.instance_variables.each {|var| g[var.to_s.delete("@")] = counter.instance_variable_get(var) }
@@ -149,6 +158,7 @@ class ReaderApp
       @tag_added = true #We just set a flag...
     end
 
+
   end
 
   # ****************************************************************************
@@ -164,12 +174,12 @@ class ReaderApp
         # The reader will put the tags it finds into its tag_list... An array of tags.
         # puts "Total Tags: #{@r.tag_list.length}"
 
-        if @tag_added
-          #We've got at least one new tag on the list. -- Report the new Tags...
-           @r.tag_list
-          @tag_added = false
+        # if @tag_added
+        #   #We've got at least one new tag on the list. -- Report the new Tags...
+        #    @r.tag_list
+        #   @tag_added = false
           persist
-        end
+        # end
 
         #Clean out Stale tags.
         @r.tag_list.clear
@@ -180,7 +190,7 @@ class ReaderApp
 
     # puts
     # puts "Reading Tags:"
-    @r.reading_active=true
+    # @r.reading_active=true
 
     # puts "lifetime"
     # p @r.tag_list.tag_lifetime
