@@ -157,6 +157,7 @@ get '/taglist' do
    end
 
    post '/output' do
+     READS.delete_many({})
      TAGS.delete_many({})
      REPEATS.delete_many({})
      redirect '/'
@@ -196,7 +197,7 @@ get '/taglist' do
 
      people = YAML::load_file(File.join(__dir__, "people.yml"))
 
-     @people = people 
+     @people = people
 
       @people.to_json
    end
