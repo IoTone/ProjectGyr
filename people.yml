@@ -1,1 +1,7 @@
---- []
+---
+- !ruby/object:Testtag
+  epc: PX2D Z9O7 YD4I N9LO JEKR HUHW B2N7
+  rssi: '50.95310179804325'
+  count: 16
+  disc: 2019/08/25 18:23:00.000
+  last: 2019/08/25 18:23:00.000

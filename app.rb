@@ -5,7 +5,7 @@ $: << File.dirname(__FILE__)
 $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 
 # #require our library
-require 'thinkifyreader'
+# require 'thinkifyreader'
 require 'sinatra'
 require './models/mongo_db'
 require 'net/http'

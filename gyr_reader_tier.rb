@@ -5,7 +5,7 @@ $: << File.dirname(__FILE__)
 $: << File.join(File.dirname(__FILE__),"","thinkify_api")
 
 # #require our library
-require 'thinkifyreader'
+# require 'thinkifyreader'
 require './models/mongo_db'
 require './newTag'
 require './testTag'
@@ -19,11 +19,11 @@ class ReaderApp
 
   def persist
 
-    @tag_list = @r.tag_list
+    # @tag_list = @r.tag_list
     people = []
-    # @tag_list = []
-    #
-    # @tag_list << Testtag.new("PX2D Z9O4 YD4I N9LO JFKU SUHW B2N7", "50.95310179804325", 16, "2018/11/06 11:20:00.000", "2018/11/06 11:20:00.000")
+    @tag_list = []
+
+    @tag_list << Testtag.new("PX2D Z9O7 YD4I N9LO JEKR HUHW B2N7", "50.95310179804325", 16, "2019/08/25 18:23:00.000", "2019/08/25 18:23:00.000")
 
     counter = Read.new
     repeat = Repeat.new
@@ -121,124 +121,124 @@ class ReaderApp
   # ****************************************************************************
   # Create a reader grab our configuraiton and get ready to run
   # ****************************************************************************
-  def initialize
-    # The PC this code is running on provides the networking / mac address we use
-    #in the DB. Let's make a "reader" in the DB using these paramters.
-
-    #We can specify parameters in a config file for easier deployment.
-    @tag_added = false
-
-    # Create a thinkify reader to work with.
-    # On windows you can just call .new and the class will scan for the first reader
-    # it can find (upto com20)
-    if RUBY_PLATFORM.include?("linux")
-      puts("Configure linux reader on  /dev/ttyUSB0")
-      @r = ThinkifyReader.new('/dev/ttyUSB0') #Linux Ubuntu
-      # @r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
-    end
-
-    if RUBY_PLATFORM.include?("mingw32")
-      puts("Configure windows reader")
-      @r = ThinkifyReader.new
-    end
-
-    if RUBY_PLATFORM.include?("mswin32")
-      puts("Configure windows reader")
-      @r = ThinkifyReader.new
-    end
-
-    # Our API supports a callback mechanism. Simply tie a block to the .tag_added or
-    # .tag_updated or .tag_removed to perform a set of tasks whenever these events
-    # occur.
-    #puts "setting up tag added callback"
-    # When we first observe a tag, add it to the db if it doesn't exist and then add
-    # an 'added' event.
-    @r.tag_list.tag_added do |tag|
-      # puts "A new tag was seen!  #{tag.epc}"
-      @tag_added = true #We just set a flag...
-    end
-
-
-  end
-
-  # ****************************************************************************
-  # Do one cycle to do notification.
-  #****************************************************************************
-  def run_cycle
-
-    @r.reading_active=true
-
-      # Read for a few seconds...
-        sleep(@@config['reader_duty_cycle'])
-
-        # The reader will put the tags it finds into its tag_list... An array of tags.
-        # puts "Total Tags: #{@r.tag_list.length}"
-
-        # if @tag_added
-        #   #We've got at least one new tag on the list. -- Report the new Tags...
-        #    @r.tag_list
-        #   @tag_added = false
-          persist
-        # end
-
-        #Clean out Stale tags.
-        @r.tag_list.clear
-
-  end
-
-  def run
-
-    # puts
-    # puts "Reading Tags:"
-    # @r.reading_active=true
-
-    # puts "lifetime"
-    # p @r.tag_list.tag_lifetime
-
-    if @r.connected == true
-
-      status = "Connected"
-      reader_id = 1
-
-      @reader_status = READERS.find(reader: reader_id).to_a
-
-      s = {'status' => status, "reader" => reader_id }
-
-      if @reader_status.empty?
-        READERS.insert_one(s)
-      else
-        READERS.update_one({reader: reader_id }, '$set' => { 'status' => status })
-      end
-
-      # @@status = "Connected"
-    end
-
-    begin
-
-    while(1)
-      run_cycle
-    end
-
-    rescue Interrupt
-      reader_id = 1
-
-      READERS.update_one({reader: reader_id }, '$set' => { 'status' => 'Not Connected' })
-    rescue Exception
-      reader_id = 1
-
-      READERS.update_one({reader: reader_id }, '$set' => { 'status' => 'Not Connected' })
-
-      puts "Exception Thrown."
-
-      p $!
-    ensure
-
-      # Turn off reading.
-      @r.reading_active=false
-
-    end
-
-  end
+  # def initialize
+  #   # The PC this code is running on provides the networking / mac address we use
+  #   #in the DB. Let's make a "reader" in the DB using these paramters.
+  #
+  #   #We can specify parameters in a config file for easier deployment.
+  #   @tag_added = false
+  #
+  #   # Create a thinkify reader to work with.
+  #   # On windows you can just call .new and the class will scan for the first reader
+  #   # it can find (upto com20)
+  #   if RUBY_PLATFORM.include?("linux")
+  #     puts("Configure linux reader on  /dev/ttyUSB0")
+  #     @r = ThinkifyReader.new('/dev/ttyUSB0') #Linux Ubuntu
+  #     # @r = ThinkifyReader.new('/dev/ttyACM0') #Linux Ubuntu
+  #   end
+  #
+  #   if RUBY_PLATFORM.include?("mingw32")
+  #     puts("Configure windows reader")
+  #     @r = ThinkifyReader.new
+  #   end
+  #
+  #   if RUBY_PLATFORM.include?("mswin32")
+  #     puts("Configure windows reader")
+  #     @r = ThinkifyReader.new
+  #   end
+  #
+  #   # Our API supports a callback mechanism. Simply tie a block to the .tag_added or
+  #   # .tag_updated or .tag_removed to perform a set of tasks whenever these events
+  #   # occur.
+  #   #puts "setting up tag added callback"
+  #   # When we first observe a tag, add it to the db if it doesn't exist and then add
+  #   # an 'added' event.
+  #   @r.tag_list.tag_added do |tag|
+  #     # puts "A new tag was seen!  #{tag.epc}"
+  #     @tag_added = true #We just set a flag...
+  #   end
+  #
+  #
+  # end
+  #
+  # # ****************************************************************************
+  # # Do one cycle to do notification.
+  # #****************************************************************************
+  # def run_cycle
+  #
+  #   @r.reading_active=true
+  #
+  #     # Read for a few seconds...
+  #       sleep(@@config['reader_duty_cycle'])
+  #
+  #       # The reader will put the tags it finds into its tag_list... An array of tags.
+  #       # puts "Total Tags: #{@r.tag_list.length}"
+  #
+  #       # if @tag_added
+  #       #   #We've got at least one new tag on the list. -- Report the new Tags...
+  #       #    @r.tag_list
+  #       #   @tag_added = false
+  #         persist
+  #       # end
+  #
+  #       #Clean out Stale tags.
+  #       @r.tag_list.clear
+  #
+  # end
+  #
+  # def run
+  #
+  #   # puts
+  #   # puts "Reading Tags:"
+  #   # @r.reading_active=true
+  #
+  #   # puts "lifetime"
+  #   # p @r.tag_list.tag_lifetime
+  #
+  #   if @r.connected == true
+  #
+  #     status = "Connected"
+  #     reader_id = 1
+  #
+  #     @reader_status = READERS.find(reader: reader_id).to_a
+  #
+  #     s = {'status' => status, "reader" => reader_id }
+  #
+  #     if @reader_status.empty?
+  #       READERS.insert_one(s)
+  #     else
+  #       READERS.update_one({reader: reader_id }, '$set' => { 'status' => status })
+  #     end
+  #
+  #     # @@status = "Connected"
+  #   end
+  #
+  #   begin
+  #
+  #   while(1)
+  #     run_cycle
+  #   end
+  #
+  #   rescue Interrupt
+  #     reader_id = 1
+  #
+  #     READERS.update_one({reader: reader_id }, '$set' => { 'status' => 'Not Connected' })
+  #   rescue Exception
+  #     reader_id = 1
+  #
+  #     READERS.update_one({reader: reader_id }, '$set' => { 'status' => 'Not Connected' })
+  #
+  #     puts "Exception Thrown."
+  #
+  #     p $!
+  #   ensure
+  #
+  #     # Turn off reading.
+  #     @r.reading_active=false
+  #
+  #   end
+  #
+  # end
 
 end
  #***********************************************************
@@ -246,6 +246,6 @@ end
 
  rn = ReaderApp.new()
 
- rn.run
+ # rn.run
 
-  # rn.persist
+  rn.persist
