@@ -1,3 +1,7 @@
+![Alt text](./public/images/gyruss.png?raw=true "ProjectGyr")
+
+![Alt text](./public/images/setting_page.png?raw=true "Settings")
+
 # Overview
 
 Project Gyr v0.9 provides an easy way to use RFID to detect presense and track users in an area.  The intent is to offer a realtime dashboard for anyone needing to track movement, checkins, walk ins, visits, etc., in a particular area around an RFID proximity reader.  
