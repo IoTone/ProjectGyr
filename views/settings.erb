@@ -35,10 +35,10 @@
           <h2>Reader Details</h2>
         </div>
         <div>
-         <p><strong>Reader ID:</strong> <%= @reader_ID %> </p>
-         <p><strong>Status of Connection:</strong> <%= @reader_status %></p>
-         <p><strong>OS path:</strong> <%= @platform %> <%= @serial_port %></p>
-         <p><strong>OS path:</strong> <%= @people %></p>
+         <p><strong data-toggle="tooltip" title="ID associated with reader which is configurable in gyruss_values.yml">Reader ID:</strong> <%= @reader_ID %> </p>
+         <p><strong data-toggle="tooltip" title="Determines whether reader is connected or not">Status of Connection:</strong> <%= @reader_status %></p>
+         <p><strong data-toggle="tooltip" title="Displays operating system and USB port that reader is connected to">OS path:</strong> <%= @platform %> <%= @serial_port %></p>
+         <!-- <p><strong>OS path:</strong> <%= @people %></p> -->
         </div>
 
         <!-- <div style="padding: 30px" class="row">
@@ -71,9 +71,9 @@
         </div>
         <div class="row">
         <div>
-          <button style="margin:20px" class="btn btn-primary" id="csv">Export to CSV</button>
+          <button data-toggle="tooltip" title="Exports recorded tag ID list to csv doc" style="margin:20px" class="btn btn-primary" id="csv">Export to CSV</button>
          <form style="display:inline" action="/output" method="post">
-          <button style="margin:20px" class="btn btn-primary" type="submit">Reset Counter</button>
+          <button data-toggle="tooltip" title="Resets counter for debug and analytics dashboard" style="margin:20px" class="btn btn-primary" type="submit">Reset Counter</button>
          </form>
         </div>
        </div>
@@ -82,7 +82,7 @@
          <div style="padding: 30px" class="row">
           <form action="/duty" method="post">
             <div class="form-group">
-              <label for="duty"><h4>Reader Duty Cycle: <%= @reader_duty_cycle %></h4></label>
+              <label for="duty"><h4 data-toggle="tooltip" title="The duration of reader timeout time, in seconds">Reader Duty Cycle: <%= @reader_duty_cycle %></h4></label>
               <input name="duty" type="number" class="form-control" id="readerDutyCyle">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -92,7 +92,7 @@
          <div style="padding: 30px" class="row">
            <form action="/linger" method="post">
              <div class="form-group">
-               <label for="linger_threshold"><h4>Linger Threshold: <%= @linger_threshold %></h4></label>
+               <label for="linger_threshold"><h4 data-toggle="tooltip" title="Duration of time before repeats visits of tag ID's are logged in minutes">Linger Threshold: <%= @linger_threshold %></h4></label>
                <input name="linger_threshold" type="number" class="form-control" id="lingerThreshold">
              </div>
              <button type="submit" class="btn btn-primary">Submit</button>
@@ -106,7 +106,9 @@
    </div>
 
   <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="js/settings_tooltips.js"></script>
   <script src="js/tabs.js"></script>
   <script src="js/csv.js"></script>
  </body>
