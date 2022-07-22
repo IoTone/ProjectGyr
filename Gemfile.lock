@@ -59,6 +59,8 @@ GEM
       bson (>= 4.3.0, < 5.0.0)
     multi_xml (0.6.0)
     mustermann (1.0.3)
+    nokogiri (1.10.1)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.1-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     pry (0.12.2)
@@ -87,10 +89,11 @@ GEM
     tilt (2.0.9)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
